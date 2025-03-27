@@ -5,14 +5,40 @@
     </head>
     <body>
         <header>
-            <h1><a href="/">DSwan's Blog</a></h1>
+            <h1><a href="/">Home</a></h1>
         </header>
-        {% for post in posts %}
+        <main>
+            <div>
+                <select id="filter" name="filter">
+                    <option value="newest">Recent</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+            {% for post in posts %}
             <article>
-                <time>published: {{ post.published_date }}</time>
+                <time>Published: {{ post.published_date }}</time>
                 <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
+                <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
             </article>
-        {% endfor %}
+            {% endfor %}
+        </main>
     </body>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterValue = urlParams.get("q");
+            if (filterValue) {
+                document.getElementById("filter").value = filterValue;
+            }
+        });
+
+        document.getElementById('filter').addEventListener("change", function() {
+            const selectedValue = this.value;
+            const url = new URL(window.location);
+            url.searchParams.set("q", selectedValue);
+            window.history.replaceState({}, "", url);
+            location.reload();
+        })
+    </script>
 </html>
