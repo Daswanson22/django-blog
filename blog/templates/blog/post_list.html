@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>DSwan's Blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Home</a></h1>
-        </header>
-        <main>
-            <div>
-                <select id="filter" name="filter">
-                    <option value="newest">Recent</option>
-                    <option value="oldest">Oldest</option>
-                </select>
-            </div>
-            {% for post in posts %}
-            <article>
-                <time>Published: {{ post.published_date }}</time>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
-            </article>
-            {% endfor %}
-        </main>
-    </body>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div>
+        <select id="filter" name="filter">
+            <option value="newest">Recent</option>
+            <option value="oldest">Oldest</option>
+        </select>
+    </div>
+    {% for post in posts %}
+    <article>
+        <time>Published: {{ post.published_date }}</time>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
+    </article>
+    {% endfor %}
 
     <script>
         window.addEventListener("DOMContentLoaded", function() {
@@ -41,4 +32,4 @@
             location.reload();
         })
     </script>
-</html>
+{% endblock %}

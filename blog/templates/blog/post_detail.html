@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <article>
+        {% if post.published_date %}
+            <h1>{{ post.title }}</h1>
+            <time>Published: {{ post.published_date }}</time>
+            <div class="stats">
+                <h6>Upvotes {{post.upvotes }}</h6>
+                <h6>Views {{ post.views }}</h6>
+            </div>
+            <p>{{ post.text|linebreaksbr }}</p>
+        {% else %}
+            <div>
+                <h2>This post has not been published yet.</h2>
+                <p>Please come back when it has been published.</p>
+            </div>
+        {% endif %}
+    </article>
+{% endblock %}
