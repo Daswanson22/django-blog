@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up - MLB Fan Blog</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}?{% now 'U' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-side">
+            <h1>Sign Up</h1>
+            <form method="post">
+                {% csrf_token %} 
+                {{ form.as_p }} 
+                <button type="submit">Sign Up</button> 
+            </form>
+        </div>
+        <div class="right-side">
+
+        </div>
+    </div>
+    
+</body>
+
+</html>

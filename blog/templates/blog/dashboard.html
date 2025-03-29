@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MLB Fan Blog</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?{% now 'U' %}">
+</head>
+
+<body>
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Favorite Team: {{ user.userprofile.favorite_team }}</p> <a href="{% url 'logout' %}">Logout</a>
+    <h2>Create a Post</h2>
+    <form method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Submit Post</button> </form>
+    <h2>My Posts</h2>
+    <div class="post-container">
+        {% for post in posts %}
+        <div class="post">
+            {% if post.published_date %}
+            <span>Published: {{ post.published_date }}</span>
+            {% else %}
+            <span>Not published yet.</span>
+            {% endif %}
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
+            <p>
+                <em>By {{ post.author.username }} ({{ post.author.userprofile.favorite_team }})</em>
+            </p>
+        </div> {% empty %} <p>No posts yet.</p>
+        {% endfor %}
+    </div>
+   
+</body>
+
+</html>

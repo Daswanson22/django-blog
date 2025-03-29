@@ -1,6 +1,39 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseNotFound
 from django.utils import timezone
-from .models import Post
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from .forms import SignUpForm, PostForm
+from .models import Post, UserProfile
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            print(user)
+            UserProfile.objects.create(user=user, favorite_team=form.cleaned_data['favorite_team'])
+            login(request, user)
+            return redirect('post_list')
+        # else:
+        #     return HttpResponseNotFound()
+    else: # GET request
+        form = SignUpForm()
+        return render(request, 'blog/signup.html', {'form': form})
+
+@login_required
+def dashboard(request):
+    posts = Post.objects.filter(author=request.user).order_by('-created_date')
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post_list')
+    else: # GET request
+        form = PostForm()
+        return render(request, 'blog/dashboard.html', {'form': form, 'posts': posts})
 
 def post_list(request):
     query = request.GET.get('q')

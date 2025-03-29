@@ -9,7 +9,13 @@
     </head>
     <body>
         <header>
-            <h1><a href="/">Home</a></h1>
+            <a href="/">Home</a>
+            {% if user.is_authenticated %}
+            <a href="/dashboard">Dashboard</a>
+            {% else %}
+            <a href="/signup">Create an Account</a>
+            {% endif %}
+
         </header>
         <main>
             {% block content %}
