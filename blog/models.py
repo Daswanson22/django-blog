@@ -8,6 +8,8 @@ class Post(models.Model):
     text = models.TextField()
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+    image_url = models.URLField(blank=True, null=True)
+    tags = models.CharField(max_length=200, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
