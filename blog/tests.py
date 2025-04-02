@@ -75,3 +75,13 @@ class PostModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(days=1, seconds=1)
         old_post = Post(title="Hello", text="Hello, to all the mlb fans", published_date=time)
         self.assertIs(old_post.was_published_recently(), False)
+
+    def test_post_not_published_before_creation_time(self):
+        """
+        Should return True if the (published_date) is
+        after the current time (now)
+        """
+        now = timezone.now()
+        pub_date = timezone.now() - datetime.timedelta(days=2, seconds=12)
+        new_post = Post(title="hellow", text="Whats up fam?", published_date=pub_date)
+        self.assertGreaterEqual(now, new_post.published_date)

@@ -15,7 +15,7 @@
         <button type="submit">Logout</button>
     </form>
     <h2>Create a Post</h2>
-    <form method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Submit Post</button> </form>
+    <form method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Publish</button> </form>
     <h2>My Posts</h2>
     <div class="post-container">
         {% for post in posts %}

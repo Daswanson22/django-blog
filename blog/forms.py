@@ -15,11 +15,6 @@ class SignUpForm(UserCreationForm):
 
 
 class PostForm(forms.ModelForm):
-    published_date = forms.DateTimeField(
-        widget=forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-        required=False,  # Makes it optional
-        label="Published Date (Optional)"  # Adds "(Optional)" to the label
-    )
     class Meta:
         model = Post
-        fields = ('title', 'text', 'published_date')
+        fields = ('title', 'text')
