@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils import timezone
+import datetime
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -39,6 +41,9 @@ class UserProfile(models.Model):
         ('Other', 'Other'),
     ])
 
+    def get_favorite_team(self):
+        return self.favorite_team
+
     def __str__(self):
         return f"{self.user.username} - {self.favorite_team}"
 
@@ -57,6 +62,13 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    def was_published_recently(self):
+        """
+        Check if post was published within the past day
+        """
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.published_date <= now
 
     def __str__(self):
         return self.title
