@@ -1,15 +1,26 @@
 {% extends 'blog/base.html' %}
+{% load static %}
+
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}?{% now 'U' %}">
+
     <article>
         {% if post.published_date %}
-            <h1>{{ post.title }}</h1>
+            <h1 class="title">{{ post.title }}</h1>
+            <p class="author">Posted By: {{ post.author }}</p>
             <time>Published: {{ post.published_date }}</time>
             <div class="stats">
-                <h6>Upvotes {{post.upvotes }}</h6>
+                <form method="post" action="{% url 'blog:upvote' post.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="upvote">
+                        <i class="fa fa-thumbs-up"></i>
+                    </button>
+                    <span>{{ post.upvotes }}</span>
+                </form>
                 <h6>Views {{ post.views }}</h6>
             </div>
-            <p>{{ post.text|linebreaksbr }}</p>
+            <p class="content">{{ post.text|linebreaksbr }}</p>
         {% else %}
             <div>
                 <h2>This post has not been published yet.</h2>
@@ -17,4 +28,5 @@
             </div>
         {% endif %}
     </article>
+
 {% endblock %}

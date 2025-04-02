@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, HttpResponseRedirect
 from django.utils import timezone
+from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import F
+
 from .forms import SignUpForm, PostForm
 from .models import Post, UserProfile
 
@@ -58,4 +61,13 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {
         'post': post
     })
+
+def upvote(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user.is_authenticated:
+        post.upvotes = F("upvotes") + 1
+        post.save()
+        return HttpResponseRedirect(reverse("blog:post_detail", args=(post.id,)))
+    else:
+        return redirect('blog:signup')
 

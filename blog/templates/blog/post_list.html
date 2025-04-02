@@ -1,6 +1,9 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}?{% now 'U' %}">
+    
     <div>
         <select id="filter" name="filter">
             <option value="newest">Recent</option>
@@ -9,8 +12,11 @@
     </div>
     {% for post in posts %}
     <article>
-        <time>Published: {{ post.published_date }}</time>
-        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <div>
+            <p>Author: {{ post.author }}</p>
+            <time>Published: {{ post.published_date }}</time>
+        </div>
+        <h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
     </article>
     {% endfor %}

@@ -1,79 +1,71 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+/* Reset some default styles */
+body, h1, h2, h3, p, select, option, article, div {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border: 0;
+    font-size: 100%;
+    font-family: 'Arial', sans-serif;
 }
 
-header {
-    width: 100%;
-    background-color: #ddd;
-    padding: 20px 0;
-    text-align: center;
-    border-bottom: 2px solid #bbb;
-}
-
-header h1 a {
-    text-decoration: none;
+body {
+    background-color: #f4f4f4;
     color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-main {
-    width: 90%;
-    max-width: 800px;
-    margin-top: 20px;
-}
-
-div {
-    text-align: right;
-    margin-bottom: 20px;
+.container {
+    width: 80%;
+    max-width: 900px;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 select {
-    padding: 5px;
-    border: 1px solid #bbb;
-    background-color: #fff;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
     cursor: pointer;
 }
 
 article {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
 }
 
-article time {
-    font-size: 0.9em;
+article:last-child {
+    border-bottom: none;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #222;
+    transition: color 0.3s ease;
+}
+
+h2 a:hover {
+    color: #0073e6;
+}
+
+p {
     color: #666;
 }
 
-article h2 a {
-    color: #222;
-    text-decoration: none;
-}
-
-article p {
-    margin-top: 10px;
-    line-height: 1.6;
-}
-
-div.stats {
+article div {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    border-top: 1px solid rgba(97, 97, 97, 0.177);
-    border-bottom: 1px solid rgba(97, 97, 97, 0.177);
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #555;
 }
 
-div.stats h6 {
-    margin: 0;
-    padding: 5px 0;
-    font-weight: 100;
-    font-style: italic;
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+    }
 }
