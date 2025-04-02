@@ -9,7 +9,11 @@
 
 <body>
     <h1>Welcome, {{ user.username }}!</h1>
-    <p>Favorite Team: {{ user.userprofile.favorite_team }}</p> <a href="{% url 'logout' %}">Logout</a>
+    <p>Favorite Team: {{ user.userprofile.favorite_team }}</p> 
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
     <h2>Create a Post</h2>
     <form method="post"> {% csrf_token %} {{ form.as_p }} <button type="submit">Submit Post</button> </form>
     <h2>My Posts</h2>
