@@ -9,14 +9,15 @@ from .models import Post, UserProfile
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        print(form.error_messages)
         if form.is_valid():
             user = form.save()
-            print(form.cleaned_data['favorite_team'])
             UserProfile.objects.create(user=user, favorite_team=form.cleaned_data['favorite_team'])
             login(request, user)
             return redirect('post_list')
-        # else:
-        #     return HttpResponseNotFound()
+        else:
+            return render(request, "blog/signup.html", {"form":form})
+        
     else: # GET request
         form = SignUpForm()
         return render(request, 'blog/signup.html', {'form': form})
