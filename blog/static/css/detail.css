@@ -1,153 +1,97 @@
 body {
-    background-color: #f4f4f4;
-    color: #000000;
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.7;
-}
-
-main {
-    margin: 0;
 }
 
 article {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0;
-    background-color: white;
-    min-height: 100vh;
-    border-left: 1px solid rgba(163, 163, 163, 0.25);
-    border-right: 1px solid rgba(163, 163, 163, 0.25);
+    width: 60%;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #262626;
+    border-left: 5px solid #E53935; /* Red accent like MLB branding */
 }
 
 .title {
-    font-size: 2.8em;
-    margin-bottom: 0.3em;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    padding-left: 15px;
-    line-height: 1.2;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #E53935;
+    padding-bottom: 5px;
 }
 
-.author {
-    font-size: 1.2em;
-    color: #1a1a1a;
-    margin: 0 0 15px 20px;
-    font-weight: 500;
-}
-
-time {
-    display: block;
-    font-size: 1.15em;
-    color: #404040;
-    margin: 0 0 10px 20px;
-    font-style: normal;
-    background: inherit;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 4px;
+.author, time {
+    font-size: 0.9em;
+    color: #B0B0B0;
 }
 
 .stats {
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: space-between;
     align-items: center;
-    gap: 25px;
-    margin: 0 0 35px 0;
-    padding: 5px 0;
-    background-color: inherit;
-    border-top: 1px solid rgba(163, 163, 163, 0.5);
-    border-bottom: 1px solid rgba(163, 163, 163, 0.5);
-    white-space: nowrap;
+    background-color: #333;
+    padding: 10px;
+    margin-top: 10px;
 }
 
-.stats form {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 25px;
+.stats h6 {
+    margin: 0;
+    color: #E0E0E0;
 }
 
 .upvote {
-    background: inherit;
-    color: black;
+    background: none;
     border: none;
-    padding: 5px;
+    color: #E0E0E0;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1.1em;
-    display: flex;
-    align-items: center;
-    
+    font-size: 1.2em;
 }
 
 .upvote:hover {
-    color: blue;
-}
-
-.stats span {
-    font-size: 1.1em;
-    font-weight: 600;
-}
-
-h6 {
-    margin: 0;
-    font-size: 1.1em;
-    color: black;
-    font-weight: 500;
+    color: #E53935;
 }
 
 .content {
-    font-size: 1.25em;
-    margin: 0 0 20px 20px;
-    text-align: left;
-    max-width: 90%;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-top: 20px;
 }
 
-div {
-    text-align: center;
-    padding: 50px;
+.comment-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #303030;
+    border-left: 3px solid #E53935;
 }
 
-h2 {
-    font-size: 2.2em;
-    margin-bottom: 25px;
-    font-weight: 700;
-    color: #000000;
+.comment {
+    padding: 10px;
+    border-bottom: 1px solid #444;
 }
 
-p {
-    font-size: 1.2em;
-    color: #1a1a1a;
+.comment strong {
+    color: #E53935;
 }
 
-/* Accessibility */
-:focus {
-    outline: 4px solid #000000;
-    outline-offset: 3px;
+textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #222;
+    color: #E0E0E0;
+    border: 1px solid #E53935;
 }
 
-@media (max-width: 768px) {
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    article {
-        padding: 0;
-        margin: 0;
-    }
-    
-    .title {
-        font-size: 2.2em;
-    }
-    
-    .content {
-        font-size: 1.15em;
-        max-width: 100%;
-    }
-    
-    .stats {
-        gap: 15px;
-    }
+button {
+    background-color: #E53935;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #B71C1C;
 }

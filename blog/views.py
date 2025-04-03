@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import F
 
 from .forms import SignUpForm, PostForm
-from .models import Post, UserProfile
+from .models import Post, UserProfile, Comment
 
 def signup(request):
     if request.method == 'POST':
@@ -71,3 +71,13 @@ def upvote(request, pk):
     else:
         return redirect('blog:signup')
 
+def comment(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=pk)
+        if request.method == 'POST':
+            text = request.POST.get('comment')
+            print(f"The new comment is: {text}")
+            Comment.objects.create(post=post, user=request.user, text=text)
+            return HttpResponseRedirect(reverse("blog:post_detail", args=(post.id,)))
+    else:
+        return redirect('blog:signup')

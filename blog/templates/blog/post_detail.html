@@ -21,6 +21,23 @@
                 <h6>Views {{ post.views }}</h6>
             </div>
             <p class="content">{{ post.text|linebreaksbr }}</p>
+            <div class="comment-container">
+                <h2>Comments</h2>
+                {% for comment in post.comment_set.all %}
+                    <div class="comment">
+                        <p><strong>{{ comment.user }}</strong></p>
+                        <p>{{ comment.text|linebreaksbr }}</p>
+                        <time>Posted: {{ comment.created_date }}</time>
+                    </div>
+                {% empty %}
+                    <p>No comments yet.</p>
+                {% endfor %}
+                <form method="post" action="{% url 'blog:comment' post.id %}">
+                    {% csrf_token %}
+                    <textarea name="comment" rows="4" placeholder="Add a comment..." required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         {% else %}
             <div>
                 <h2>This post has not been published yet.</h2>
