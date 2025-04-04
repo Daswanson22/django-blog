@@ -17,7 +17,7 @@ def signup(request):
             user = form.save()
             UserProfile.objects.create(user=user, favorite_team=form.cleaned_data['favorite_team'])
             login(request, user)
-            return redirect('post_list')
+            return redirect('blog:post_list')
         else:
             return render(request, "blog/signup.html", {"form":form})
         
@@ -55,9 +55,9 @@ def post_list(request):
         'posts': posts
     })
 
-def post_detail(request, pk):
-    print(pk)
-    post = get_object_or_404(Post, pk=pk)
+def post_detail(request, blog_slug):
+    print(blog_slug)
+    post = get_object_or_404(Post, slug=blog_slug)
     return render(request, 'blog/post_detail.html', {
         'post': post
     })
@@ -67,7 +67,7 @@ def upvote(request, pk):
     if request.user.is_authenticated:
         post.upvotes = F("upvotes") + 1
         post.save()
-        return HttpResponseRedirect(reverse("blog:post_detail", args=(post.id,)))
+        return HttpResponseRedirect(reverse("blog:post_detail", args=(post.slug,)))
     else:
         return redirect('blog:signup')
 
@@ -78,6 +78,6 @@ def comment(request, pk):
             text = request.POST.get('comment')
             print(f"The new comment is: {text}")
             Comment.objects.create(post=post, user=request.user, text=text)
-            return HttpResponseRedirect(reverse("blog:post_detail", args=(post.id,)))
+            return HttpResponseRedirect(reverse("blog:post_detail", args=(post.slug,)))
     else:
         return redirect('blog:signup')

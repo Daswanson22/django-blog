@@ -1,6 +1,7 @@
 from django.db import models
-from django.conf import settings
+from django.contrib import admin
 from django.utils import timezone
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
@@ -50,14 +51,20 @@ class UserProfile(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    image_url = models.URLField(blank=True, null=True)
+    slug = models.SlugField(max_length=200, unique=True, default='')
+    tags = models.CharField(max_length=200, blank=True, null=True)
     title = models.CharField(max_length=200)
     text = models.TextField()
     upvotes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
-    image_url = models.URLField(blank=True, null=True)
-    tags = models.CharField(max_length=200, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title + str(self.pk))
+        super(Post, self).save(*args, **kwargs)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -69,9 +76,19 @@ class Post(models.Model):
         """
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.published_date <= now
+    
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('blog:post_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
+    
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'created_date', 'published_date']
+    search_fields = ['title', 'text']
+    list_filter = ['created_date', 'published_date']
+    ordering = ['-created_date']
     
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

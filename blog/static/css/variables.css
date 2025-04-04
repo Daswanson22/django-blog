@@ -1,0 +1,11 @@
+:root {
+    --primary-background-color: #f4f4f4; /* Light background color for the page */
+    --form-background-color: #ffffff;    /* White background for the form container */
+    --secondary-color: #111;             /* Darker text color for secondary elements */
+    --accent-color: #0066cc;             /* Accent color for buttons and headings */
+    --button-hover-color: #005bb5;       /* Darker shade for button hover effect */
+    --link-hover: #007bff;               /* Hover color for links */
+    --header-bg: #f1f1f1;                   /* Dark background for the header */
+    --header-text-color: #000;           /* White text color for the header */
+    --hover-bg: #dddddd;             /* Light gray background for hover effects */
+}

@@ -3,23 +3,49 @@
 
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/blog.css' %}?{% now 'U' %}">
-    
-    <div>
-        <select id="filter" name="filter">
-            <option value="newest">Recent</option>
-            <option value="oldest">Oldest</option>
-        </select>
-    </div>
-    {% for post in posts %}
-    <article>
-        <div>
-            <p>Author: {{ post.author }}</p>
-            <time>Published: {{ post.published_date }}</time>
+    <div class="container">
+        <div class="post-container">
+            <div class="filter-container">
+                <select id="filter" name="filter">
+                    <option value="newest">Recent</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+            {% for post in posts %}
+            <article>
+                <p>Author: {{ post.author }}</p>
+                <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
+                <div class="post-stats">
+                    <div>
+                        <time>{{ post.published_date }}</time>
+                        <p><i class="fa-solid fa-thumbs-up"></i>{{ post.upvotes }}</p>
+                        <p><i class="fa-solid fa-eye"></i>{{ post.views }}</p>
+                        <p><i class="fa-solid fa-comment"></i>{{ post.comment_set.all.count }}</p>
+                    </div>
+                    <div>
+                        <button id="share-button">Share</button>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
         </div>
-        <h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
-    </article>
-    {% endfor %}
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <ul>
+                {% for category in categories %}
+                    <li><a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+            <h2>Tags</h2>
+            <ul>
+                {% for tag in tags %}
+                    <li><a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
 
     <script>
         window.addEventListener("DOMContentLoaded", function() {
@@ -37,5 +63,25 @@
             window.history.replaceState({}, "", url);
             location.reload();
         })
+
+        const shareButton = document.getElementById('share-button');
+        const postTitleLink = document.getElementById('link_title').href;
+        shareButton.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Website', // Optional: Title of the content
+                    text: 'Check out this amazing website!', // Optional: Text to accompany the link
+                    url: postTitleLink // Required: The URL to share
+                })
+                .then(() => {
+                    console.log('Successfully shared!');
+                })
+                .catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                console.log('Web Share API not supported');
+            }
+        });
     </script>
 {% endblock %}

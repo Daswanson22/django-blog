@@ -4,6 +4,7 @@
         "pk": 1,
         "fields": {
             "author": 1,
+            "slug": "opening-day-2025-1",
             "title": "Opening Day 2025: What to Expect from the New MLB Season",
             "text": "The 2025 MLB season is finally here, and fans couldn’t be more excited! With new rule changes, rising stars, and blockbuster offseason trades, this year promises to be one of the most thrilling in recent memory. From Shohei Ohtani’s continued dominance to the Yankees’ revamped rotation, we break down the key storylines to watch as the first pitch is thrown.",
             "upvotes": 0,
@@ -19,6 +20,7 @@
         "pk": 2,
         "fields": {
             "author": 1,
+            "slug": "top-5-opening-day-matchups-2025-2",
             "title": "Top 5 Must-Watch Opening Day Matchups in 2025",
             "text": "Opening Day isn’t just about baseball returning—it’s about epic matchups. This year, we’re treated to some incredible games, including a historic rivalry clash between the Red Sox and Yankees, a pitching duel featuring Corbin Burnes vs. Spencer Strider, and the highly anticipated debut of a top prospect. Here’s why you can’t miss these five Opening Day showdowns.",
             "upvotes": 0,
@@ -34,6 +36,7 @@
         "pk": 3,
         "fields": {
             "author": 1,
+            "slug": "the-biggest-roster-shakeups-heading-into-mlb-opening-day-2025-3",
             "title": "The Biggest Roster Shakeups Heading into MLB Opening Day 2025",
             "text": "This offseason saw some massive player movements. Juan Soto is in a new uniform, teams went all-in on pitching, and some surprise trades reshaped entire rosters. Which teams made the best moves? And which clubs might regret their offseason decisions? We analyze the biggest roster changes heading into Opening Day.",
             "upvotes": 0,
@@ -49,6 +52,7 @@
         "pk": 4,
         "fields": {
             "author": 1,
+            "slug": "2025-mlb-rule-changes-how-theyll-impact-opening-day-and-beyond-4",
             "title": "2025 MLB Rule Changes: How They’ll Impact Opening Day and Beyond",
             "text": "MLB continues to evolve, and the 2025 season brings new rule adjustments. From tweaks to the pitch clock to expanded replay reviews, these changes could impact the flow of the game and player strategy. How will these rules affect Opening Day performances? We break it all down in this deep dive.",
             "upvotes": 0,
@@ -64,6 +68,7 @@
         "pk": 5,
         "fields": {
             "author": 1,
+            "slug": "predicting-the-stars-of-mlbs-2025-opening-day-5",
             "title": "Predicting the Stars of MLB’s 2025 Opening Day",
             "text": "Opening Day is a stage where legends are born. Who will steal the show this year? Will a rookie make an unforgettable debut? Could a veteran have a career-defining moment? We make bold predictions on which players will shine on baseball’s biggest opening stage.",
             "upvotes": 0,

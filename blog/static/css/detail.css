@@ -1,97 +1,85 @@
-body {
-    background-color: #1E1E1E;
-    color: #E0E0E0;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-article {
-    width: 60%;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #262626;
-    border-left: 5px solid #E53935; /* Red accent like MLB branding */
-}
+/* Blog Styles for Post Detail Page */
+@import url('variables.css');
 
 .title {
-    font-size: 2em;
-    font-weight: bold;
-    text-transform: uppercase;
-    border-bottom: 2px solid #E53935;
-    padding-bottom: 5px;
+    color: var(--accent-color);
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
 }
 
 .author, time {
-    font-size: 0.9em;
-    color: #B0B0B0;
+    display: block;
+    text-align: left;
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .stats {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.stats h6 {
-    margin: 0;
-    color: #E0E0E0;
+    justify-content: left;
+    gap: 1rem;
+    align-items: left;
+    height: fit-content;
 }
 
 .upvote {
     background: none;
     border: none;
-    color: #E0E0E0;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
     cursor: pointer;
-    font-size: 1.2em;
+    transition: color 0.3s ease-in-out;
 }
 
 .upvote:hover {
-    color: #E53935;
+    color: var(--link-hover);
 }
 
 .content {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-top: 20px;
+    text-align: left;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--secondary-color);
 }
 
 .comment-container {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #303030;
-    border-left: 3px solid #E53935;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
 }
 
 .comment {
-    padding: 10px;
-    border-bottom: 1px solid #444;
-}
-
-.comment strong {
-    color: #E53935;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 textarea {
     width: 100%;
-    padding: 10px;
-    background-color: #222;
-    color: #E0E0E0;
-    border: 1px solid #E53935;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
 }
 
 button {
-    background-color: #E53935;
-    color: white;
-    padding: 10px 15px;
+    background: var(--accent-color);
+    color: var(--secondary-color);
     border: none;
-    text-transform: uppercase;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #B71C1C;
+    background: var(--link-hover);
+}
+
+@media (max-width: 768px) {
+    .stats {
+        flex-direction: column;
+    }
 }
