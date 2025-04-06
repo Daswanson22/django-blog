@@ -48,6 +48,12 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.favorite_team}"
     
+class IpAddress(models.Model):
+    ip_address = models.GenericIPAddressField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.ip_address
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -57,7 +63,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
     upvotes = models.ManyToManyField(User, related_name='upvotes', blank=True)
-    views = models.IntegerField(default=0)
+    views = models.ManyToManyField(IpAddress, related_name='views', blank=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     
@@ -80,6 +86,9 @@ class Post(models.Model):
     def number_of_upvotes(self):
         return self.upvotes.count()
     
+    def number_of_views(self):
+        return self.views.count()
+    
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('blog:post_detail', kwargs={'slug': self.slug})
@@ -99,4 +108,3 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
-

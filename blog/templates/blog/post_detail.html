@@ -13,6 +13,7 @@
                 <time>{{ post.published_date }}</time>
 
                 <div class="post-actions">
+                    <p><i class="fa-solid fa-eye"></i>{{ post.number_of_views }}</p>
                     <form method="post" action="{% url 'blog:upvote' post.id %}">
                         {% csrf_token %}
                         <button type="submit" class="upvote">

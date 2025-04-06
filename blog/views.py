@@ -6,7 +6,15 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import SignUpForm, PostForm
-from .models import Post, UserProfile, Comment
+from .models import Post, UserProfile, Comment, IpAddress
+
+def get_client_oip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 def signup(request):
     if request.method == 'POST':
@@ -57,6 +65,13 @@ def post_list(request):
 def post_detail(request, blog_slug):
     print(blog_slug)
     post = get_object_or_404(Post, slug=blog_slug)
+    if request.method == "GET":
+        ip = get_client_oip(request)
+        if IpAddress.objects.filter(ip_address=ip).exists():
+            post.views.add(IpAddress.objects.get(ip_address=ip))
+        else:
+            IpAddress.objects.create(ip_address=ip)
+            post.views.add(IpAddress.objects.get(ip_address=ip))
     return render(request, 'blog/post_detail.html', {
         'post': post
     })
