@@ -49,7 +49,7 @@ class UserProfile(models.Model):
         return f"{self.user.username} - {self.favorite_team}"
     
 class IpAddress(models.Model):
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
