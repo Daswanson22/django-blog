@@ -1,9 +1,14 @@
 /* Blog Styles for Post Detail Page */
 @import url('variables.css');
 
+article {
+    padding: 0 25%;
+}
+
 .title {
     color: var(--accent-color);
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
     text-align: left;
     margin-bottom: 0.5rem;
 }
@@ -17,10 +22,31 @@
 
 .stats {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.post-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.post-actions form {
+    display: flex;
     justify-content: left;
-    gap: 1rem;
-    align-items: left;
-    height: fit-content;
+    align-items: center;
+}
+
+.post-actions i {
+    margin-right: 5px;
+}
+
+
+.post-actions a {
+    color: var(--secondary-color);
+    text-decoration: none;
 }
 
 .upvote {
@@ -29,7 +55,6 @@
     color: var(--secondary-color);
     font-size: 1.5rem;
     cursor: pointer;
-    transition: color 0.3s ease-in-out;
 }
 
 .upvote:hover {
@@ -38,10 +63,9 @@
 
 .content {
     text-align: left;
-    margin-top: 1rem;
-    padding: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
     background: rgba(255, 255, 255, 0.1);
-    border-top: 1px solid var(--secondary-color);
 }
 
 .comment-container {
@@ -65,21 +89,23 @@ textarea {
     font-size: 1rem;
 }
 
-button {
+.comment-btn {
     background: var(--accent-color);
     color: var(--secondary-color);
     border: none;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
 }
 
-button:hover {
-    background: var(--link-hover);
+@media (max-width: 1024px) {
+    article {
+        padding: 0 12%;
+    }
 }
+
 
 @media (max-width: 768px) {
-    .stats {
-        flex-direction: column;
+    article {
+        padding: 0;
     }
 }

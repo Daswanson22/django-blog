@@ -47,7 +47,7 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.favorite_team}"
-
+    
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -56,7 +56,7 @@ class Post(models.Model):
     tags = models.CharField(max_length=200, blank=True, null=True)
     title = models.CharField(max_length=200)
     text = models.TextField()
-    upvotes = models.IntegerField(default=0)
+    upvotes = models.ManyToManyField(User, related_name='upvotes', blank=True)
     views = models.IntegerField(default=0)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
@@ -77,13 +77,17 @@ class Post(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.published_date <= now
     
+    def number_of_upvotes(self):
+        return self.upvotes.count()
+    
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('blog:post_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
-    
+   
+
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'created_date', 'published_date']
     search_fields = ['title', 'text']
@@ -95,3 +99,4 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+

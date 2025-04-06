@@ -9,15 +9,26 @@
         {% if post.published_date %}
             <h1 class="title">{{ post.title }}</h1>
             <p class="author">Posted By: {{ post.author }}</p>
-            <time>Published: {{ post.published_date }}</time>
             <div class="stats">
-                <form method="post" action="{% url 'blog:upvote' post.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="upvote">
-                        <i class="fa fa-thumbs-up"></i>
-                    </button>
-                    <span>{{ post.upvotes }}</span>
-                </form>
+                <time>{{ post.published_date }}</time>
+
+                <div class="post-actions">
+                    <form method="post" action="{% url 'blog:upvote' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="upvote">
+                            <i class="fa-regular fa-thumbs-up fa-xs"></i>
+                        </button>
+                        <span>{{ post.number_of_upvotes }}</span>
+                    </form>
+                    <a href="#comment-section">
+                        <i class="fa-regular fa-comment"></i>
+                        {{ post.comment_set.all.count }}
+                    </a>
+                    <div>
+                        <button id="share-button" class="share-btn">Share</button>
+                    </div>
+                </div>
+                
             </div>
             <p class="content">{{ post.text|linebreaksbr }}</p>
             <div class="comment-container">
@@ -31,10 +42,10 @@
                 {% empty %}
                     <p>No comments yet.</p>
                 {% endfor %}
-                <form method="post" action="{% url 'blog:comment' post.id %}">
+                <form method="post" action="{% url 'blog:comment' post.id %}" id="comment-section">
                     {% csrf_token %}
                     <textarea name="comment" rows="4" placeholder="Add a comment..." required></textarea>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="comment-btn">Submit</button>
                 </form>
             </div>
         {% else %}
@@ -44,5 +55,27 @@
             </div>
         {% endif %}
     </article>
+
+    <script>
+        const shareButton = document.getElementById('share-button');
+        const postTitleLink = window.location.href; // Get the current page URL
+        shareButton.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Website', // Optional: Title of the content
+                    text: 'Check out this amazing website!', // Optional: Text to accompany the link
+                    url: postTitleLink // Required: The URL to share
+                })
+                .then(() => {
+                    console.log('Successfully shared!');
+                })
+                .catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                console.log('Web Share API not supported');
+            }
+        });
+    </script>
 
 {% endblock %}

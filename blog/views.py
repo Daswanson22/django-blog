@@ -4,7 +4,6 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.db.models import F
 
 from .forms import SignUpForm, PostForm
 from .models import Post, UserProfile, Comment
@@ -65,8 +64,10 @@ def post_detail(request, blog_slug):
 def upvote(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.user.is_authenticated:
-        post.upvotes = F("upvotes") + 1
-        post.save()
+        if request.user in post.upvotes.all():
+            post.upvotes.remove(request.user)
+        else:
+            post.upvotes.add(request.user)
         return HttpResponseRedirect(reverse("blog:post_detail", args=(post.slug,)))
     else:
         return redirect('blog:signup')
