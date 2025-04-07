@@ -1,111 +1,154 @@
-/* Blog Styles for Post Detail Page */
-@import url('variables.css');
-
+/* Base layout */
 article {
-    padding: 0 25%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: inherit;
+    color: #222; /* dark gray text */
 }
 
+@media (min-width: 768px) {
+    article {
+        padding: 2rem 15%;
+    }
+}
+
+/* Title */
 .title {
-    color: var(--accent-color);
-    font-size: 2.2rem;
-    font-weight: 700;
-    text-align: left;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: #000; /* black */
     margin-bottom: 0.5rem;
 }
 
-.author, time {
-    display: block;
-    text-align: left;
-    font-size: 1rem;
-    opacity: 0.8;
+/* Author & timestamp */
+.author,
+.stats time {
+    font-size: 0.95rem;
+    color: #555; /* medium gray */
+    margin-bottom: 1rem;
 }
 
+/* Stats bar */
 .stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #333;
 }
 
 .post-actions {
     display: flex;
-    gap: 20px;
     align-items: center;
-}
-
-.post-actions form {
-    display: flex;
-    justify-content: left;
-    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .post-actions i {
-    margin-right: 5px;
+    margin-right: 0.4rem;
+    color: #007bff; /* static blue icon */
 }
 
-
-.post-actions a {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
-
-.upvote {
+/* Buttons with no background */
+.upvote,
+.comment-btn,
+.share-btn {
     background: none;
     border: none;
-    color: var(--secondary-color);
-    font-size: 1.5rem;
+    color: #007bff;
+    font-size: 0.95rem;
+    padding: 0.2rem 0.4rem;
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
 }
 
-.upvote:hover {
-    color: var(--link-hover);
+.upvote:hover,
+.comment-btn:hover,
+.share-btn:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }
 
+/* Post content */
 .content {
-    text-align: left;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    background: rgba(255, 255, 255, 0.1);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 2.5rem;
 }
 
+/* Comment section */
 .comment-container {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    margin-top: 3rem;
+}
+
+.comment-container h2 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 1rem;
 }
 
 .comment {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
 }
 
+.comment p {
+    margin: 0.2rem 0;
+    color: #444;
+}
+
+.comment time {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* Comment form */
 textarea {
     width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: none;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 1rem;
+    resize: vertical;
+    margin-top: 1rem;
+    color: #222;
+    background-color: #f9f9f9;
 }
 
-.comment-btn {
-    background: var(--accent-color);
-    color: var(--secondary-color);
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
+textarea::placeholder {
+    color: #aaa;
 }
 
-@media (max-width: 1024px) {
+/* Responsive adjustments */
+@media (max-width: 600px) {
     article {
-        padding: 0 12%;
+        padding: 1rem;
     }
-}
 
+    .title {
+        font-size: 2rem;
+    }
 
-@media (max-width: 768px) {
-    article {
-        padding: 0;
+    .content,
+    .author,
+    .stats,
+    .comment p,
+    .comment time {
+        font-size: 1.1rem;
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+    }
+
+    .post-actions {
+        justify-content: center;
     }
 }

@@ -4,7 +4,7 @@
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/blog.css' %}?{% now 'U' %}">
     <div class="container">
-        <div class="post-container">
+        <div class="main-content">
             <div class="filter-container">
                 <select id="filter" name="filter">
                     <option value="newest">Recent</option>
@@ -14,6 +14,7 @@
             {% if posts.count == 0 %}
                 <p>{{ message }}</p>
             {% else %}
+            <div class="post-container">
                 {% for post in posts %}
                 <article>
                     <p>Author: {{ post.author }}</p>
@@ -32,6 +33,7 @@
                     </div>
                 </article>
                 {% endfor %}
+            </div>
             {% endif %}
         </div>
         <div class="sidebar">
