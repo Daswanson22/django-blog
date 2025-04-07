@@ -85,3 +85,60 @@ class PostModelTests(TestCase):
         pub_date = timezone.now() - datetime.timedelta(days=2, seconds=12)
         new_post = Post(title="hellow", text="Whats up fam?", published_date=pub_date)
         self.assertGreaterEqual(now, new_post.published_date)
+
+    def test_post_has_slug(self):
+        """
+        Should return True if the post has a slug
+        """
+        user = User.objects.create(username="testuser", password="password")
+        user.save()
+        post = Post(author=user, title="Hello", text="Hello, to all the mlb fans")
+        post.save()
+        self.assertIsNotNone(post.slug)
+
+class PostListViewTests(TestCase):
+    def test_post_list_view_with_no_posts(self):
+        """
+        If no posts exist, an appropriate message should be displayed.
+        """
+        response = self.client.get(reverse('blog:post_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(response.context['message'], "No posts are available.")
+        self.assertQuerySetEqual(response.context['posts'], [])
+
+    def test_post_list_view_with_posts(self):
+        """
+        If posts exist, they should be displayed in the post list view.
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        post.publish()
+        response = self.client.get(reverse('blog:post_list'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, post)
+
+    def test_post_list_view_with_oldest_query(self):
+        """
+        If the query is 'oldest', posts should be ordered by published_date ascending.
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post1 = Post.objects.create(author=user, title='Test Post 1', text='This is a test post 1.')
+        post2 = Post.objects.create(author=user, title='Test Post 2', text='This is a test post 2.')
+        post1.publish()
+        post2.publish()
+        response = self.client.get(reverse('blog:post_list') + '?q=oldest')
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(response.context['posts'], [post1, post2], ordered=False)
+
+    def test_post_list_view_with_invalid_query(self):
+        """
+        If the query is invalid, posts should be ordered by published_date descending.
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post1 = Post.objects.create(author=user, title='Test Post 1', text='This is a test post 1.')
+        post2 = Post.objects.create(author=user, title='Test Post 2', text='This is a test post 2.')
+        post1.publish()
+        post2.publish()
+        response = self.client.get(reverse('blog:post_list') + '?q=invalid_query')
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(response.context['posts'], [post2, post1], ordered=False)

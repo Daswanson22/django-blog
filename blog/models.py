@@ -69,7 +69,8 @@ class Post(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title + str(self.pk))
+            slug_text = self.title + " " + str(self.author.id)
+            self.slug = slugify(slug_text)
         super(Post, self).save(*args, **kwargs)
 
     def publish(self):

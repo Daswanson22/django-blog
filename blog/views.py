@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth import login, logout
@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, PostForm
 from .models import Post, UserProfile, Comment, IpAddress
 
-def get_client_oip(request):
+def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -53,20 +53,28 @@ def logout_view(request):
 
 def post_list(request):
     query = request.GET.get('q')
-    post = None
+    
     if query and query == 'oldest':
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     else:
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {
-        'posts': posts
-    })
+
+    if posts.count() == 0:
+        return render(request, 'blog/post_list.html', {
+            'posts': [],
+            'message': "No posts are available."
+        })
+    else:
+        return render(request, 'blog/post_list.html', {
+            'posts': posts,
+            'message': ""
+        })
 
 def post_detail(request, blog_slug):
     print(blog_slug)
     post = get_object_or_404(Post, slug=blog_slug)
     if request.method == "GET":
-        ip = get_client_oip(request)
+        ip = get_client_ip(request)
         if IpAddress.objects.filter(ip_address=ip).exists():
             post.views.add(IpAddress.objects.get(ip_address=ip))
         else:

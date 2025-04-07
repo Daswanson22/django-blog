@@ -11,24 +11,28 @@
                     <option value="oldest">Oldest</option>
                 </select>
             </div>
-            {% for post in posts %}
-            <article>
-                <p>Author: {{ post.author }}</p>
-                <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
-                <div class="post-stats">
-                    <div>
-                        <time>{{ post.published_date }}</time>
-                        <p><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }}</p>
-                        <p><i class="fa-solid fa-eye"></i>{{ post.number_of_views }}</p>
-                        <p><i class="fa-solid fa-comment"></i>{{ post.comment_set.all.count }}</p>
+            {% if posts.count == 0 %}
+                <p>{{ message }}</p>
+            {% else %}
+                {% for post in posts %}
+                <article>
+                    <p>Author: {{ post.author }}</p>
+                    <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
+                    <div class="post-stats">
+                        <div>
+                            <time>{{ post.published_date }}</time>
+                            <p><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }}</p>
+                            <p><i class="fa-solid fa-eye"></i>{{ post.number_of_views }}</p>
+                            <p><i class="fa-solid fa-comment"></i>{{ post.comment_set.all.count }}</p>
+                        </div>
+                        <div>
+                            <button id="share-button">Share</button>
+                        </div>
                     </div>
-                    <div>
-                        <button id="share-button">Share</button>
-                    </div>
-                </div>
-            </article>
-            {% endfor %}
+                </article>
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="sidebar">
             <h2>Categories</h2>
