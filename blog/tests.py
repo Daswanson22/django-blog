@@ -142,3 +142,85 @@ class PostListViewTests(TestCase):
         response = self.client.get(reverse('blog:post_list') + '?q=invalid_query')
         self.assertEqual(response.status_code, 200)
         self.assertQuerySetEqual(response.context['posts'], [post2, post1], ordered=False)
+
+class PostDetailViewTests(TestCase):
+    def test_post_detail_view_with_valid_slug(self):
+        """
+        If the slug is valid, the post detail view should display the post.
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        post.publish()
+        response = self.client.get(reverse('blog:post_detail', args=[post.slug]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, post.title)
+        self.assertContains(response, post.text)
+        self.assertContains(response, post.author.username)
+
+    def test_post_detail_view_is_published(self):
+        """
+        Should return True if the post is published
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        post.publish()
+        response = self.client.get(reverse('blog:post_detail', args=[post.slug]))
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(post.published_date)
+
+    def test_post_detail_view_is_not_published(self):
+        """
+        Should return False if the post is not published
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        response = self.client.get(reverse('blog:post_detail', args=[post.slug]))
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNone(post.published_date)
+        self.assertContains(response, "This post has not been published yet.")
+
+    def test_post_detail_view_has_author(self):
+        """
+        Should return True if the post has an author
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        self.assertIsNotNone(post.author)
+
+class PostUpvoteViewTests(TestCase):
+    def test_upvote_post(self):
+        """
+        Should return True if the post is upvoted
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        self.client.login(username='testuser', password='password')
+        response = self.client.post(reverse('blog:upvote', args=[post.pk]))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(user, post.upvotes.all())
+
+    def test_remove_upvote_post(self):
+        """
+        Should return False if the post is unvote
+        Must call the upvote view twice to remove the upvote
+        1. First call adds the user to upvotes
+        2. Second call removes the user from upvotes
+        3. The user should not be in the upvotes list after the second call
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        self.client.login(username='testuser', password='password')
+        response = self.client.post(reverse('blog:upvote', args=[post.pk]))
+        downvote_response = self.client.post(reverse('blog:upvote', args=[post.pk]))
+        self.assertEqual(downvote_response.status_code, 302)
+        self.assertNotIn(user, post.upvotes.all())
+
+    def test_upvote_without_login(self):
+        """
+        Should redirect to signup page if the user is not logged in
+        """
+        user = User.objects.create_user(username='testuser', password='password')
+        post = Post.objects.create(author=user, title='Test Post', text='This is a test post.')
+        response = self.client.post(reverse('blog:upvote', args=[post.pk]))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('blog:signup'))

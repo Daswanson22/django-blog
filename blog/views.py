@@ -71,7 +71,6 @@ def post_list(request):
         })
 
 def post_detail(request, blog_slug):
-    print(blog_slug)
     post = get_object_or_404(Post, slug=blog_slug)
     if request.method == "GET":
         ip = get_client_ip(request)
