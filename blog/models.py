@@ -58,6 +58,7 @@ class IpAddress(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.TextField(max_length=200, blank=True, null=True)
     image_url = models.URLField(blank=True, null=True)
     slug = models.SlugField(max_length=200, unique=True, default='')
     tags = models.CharField(max_length=200, blank=True, null=True)

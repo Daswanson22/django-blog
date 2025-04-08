@@ -19,7 +19,11 @@
                 <article>
                     <p>Author: {{ post.author }}</p>
                     <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
-                    <p>{{ post.text|safe|linebreaksbr|truncatewords:50 }}</p>
+                    {% if post.description %}
+                        <p>{{ post.description|safe|linebreaksbr|truncatewords:30 }}</p>
+                    {% else %}
+                        <p>{{ post.text|safe|linebreaksbr|truncatewords:20 }}</p>
+                    {% endif %}
                     <div class="post-stats">
                         <div>
                             <time>{{ post.published_date }}</time>
