@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django_ckeditor_5.fields import CKEditor5Field
 import datetime
 
 class UserProfile(models.Model):
@@ -61,7 +62,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=200, unique=True, default='')
     tags = models.CharField(max_length=200, blank=True, null=True)
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = CKEditor5Field('Text', config_name='extends', null=False)
     upvotes = models.ManyToManyField(User, related_name='upvotes', blank=True)
     views = models.ManyToManyField(IpAddress, related_name='views', blank=True)
     created_date = models.DateTimeField(default=timezone.now)
@@ -96,16 +97,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-   
-
-class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'created_date', 'published_date']
-    search_fields = ['title', 'text']
-    list_filter = ['created_date', 'published_date']
-    ordering = ['-created_date']
+    
     
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = CKEditor5Field('Text', config_name='extends', null=False)
     created_date = models.DateTimeField(default=timezone.now)

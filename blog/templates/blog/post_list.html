@@ -19,7 +19,7 @@
                 <article>
                     <p>Author: {{ post.author }}</p>
                     <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
-                    <p>{{ post.text|linebreaksbr|truncatewords:50 }}</p>
+                    <p>{{ post.text|safe|linebreaksbr|truncatewords:50 }}</p>
                     <div class="post-stats">
                         <div>
                             <time>{{ post.published_date }}</time>
@@ -37,6 +37,18 @@
             {% endif %}
         </div>
         <div class="sidebar">
+            <h2>Leaderboard</h2>
+            <ul>
+                {% for user in leaderboard %}
+                    <li>
+                        <a href="{% url 'blog:user_profile' user.username %}">
+                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s profile picture">
+                            {{ user.username }}
+                        </a>
+                        <p>Score: {{ user.score }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
             <h2>Categories</h2>
             <ul>
                 {% for category in categories %}

@@ -31,7 +31,7 @@
                 </div>
                 
             </div>
-            <p class="content">{{ post.text|linebreaksbr }}</p>
+            <p class="content">{{ post.text|safe|linebreaksbr }}</p>
             <div class="comment-container">
                 <h2>Comments</h2>
                 {% for comment in post.comment_set.all %}

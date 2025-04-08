@@ -40,8 +40,8 @@ def dashboard(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.save()
-            return redirect('post_list')
+            post.publish()
+            return redirect('blog:post_list')
     else: # GET request
         form = PostForm()
         return render(request, 'blog/dashboard.html', {'form': form, 'posts': posts})
