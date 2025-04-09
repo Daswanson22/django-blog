@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="head-content">
+        <div class="image-container">
+            <img src="{{ team.logo_url }}" alt="Team Logo">
+        </div>
+        <div>
+            <h1>{{ team.name }}</h1>
+            <span>{{ team.abbreviation }}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

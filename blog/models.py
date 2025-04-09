@@ -105,3 +105,27 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = CKEditor5Field('Text', config_name='extends', null=False)
     created_date = models.DateTimeField(default=timezone.now)
+
+class Sport(models.Model):
+    name = models.CharField(max_length=50, choices=[
+        ('MLB', 'Major League Baseball'),
+    ])
+    logo_url = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class Team(models.Model):
+    name = models.CharField(max_length=50)
+    abbreviation = models.CharField(max_length=3)
+    slug = models.SlugField(max_length=50, default='', blank=True)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+    logo_url = models.URLField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super(Team, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name

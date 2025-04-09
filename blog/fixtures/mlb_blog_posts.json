@@ -1,190 +1,217 @@
 [
-    {
-      "model": "auth.user",
-      "pk": 1,
-      "fields": {
-        "username": "mlbfan1",
-        "password": "pbkdf2_sha256$260000$testpass",
-        "is_superuser": false,
-        "is_staff": false,
-        "is_active": true
-      }
-    },
-    {
-      "model": "auth.user",
-      "pk": 2,
-      "fields": {
-        "username": "mlbfan2",
-        "password": "pbkdf2_sha256$260000$testpass",
-        "is_superuser": false,
-        "is_staff": false,
-        "is_active": true
-      }
-    },
-    {
-      "model": "auth.user",
-      "pk": 3,
-      "fields": {
-        "username": "mlbfan3",
-        "password": "pbkdf2_sha256$260000$testpass",
-        "is_superuser": false,
-        "is_staff": false,
-        "is_active": true
-      }
-    },
-    {
-      "model": "blog.userprofile",
-      "pk": 1,
-      "fields": {
-        "user": 1,
-        "favorite_team": "NYY"
-      }
-    },
-    {
-      "model": "blog.userprofile",
-      "pk": 2,
-      "fields": {
-        "user": 2,
-        "favorite_team": "LAD"
-      }
-    },
-    {
-      "model": "blog.userprofile",
-      "pk": 3,
-      "fields": {
-        "user": 3,
-        "favorite_team": "ATL"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 1,
-      "fields": {
-        "author": 1,
-        "slug": "yankees-opening-day-dominance",
-        "tags": "Yankees, Opening Day",
-        "title": "Yankees' Opening Day Dominance",
-        "text": "The Yankees kicked off the 2025 MLB season with a huge win over the Red Sox. Judge went yard twice.",
-        "created_date": "2025-04-01T10:00:00Z",
-        "published_date": "2025-04-01T12:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 2,
-      "fields": {
-        "author": 1,
-        "slug": "volpe-breakout-season-begins",
-        "tags": "Yankees, Volpe",
-        "title": "Volpe's Breakout Season Begins",
-        "text": "Anthony Volpe started the season red-hot. Could 2025 be his All-Star year?",
-        "created_date": "2025-04-02T09:00:00Z",
-        "published_date": "2025-04-02T11:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 3,
-      "fields": {
-        "author": 2,
-        "slug": "dodgers-looking-unstoppable",
-        "tags": "Dodgers, NL West",
-        "title": "Dodgers Looking Unstoppable",
-        "text": "The Dodgers have started the 2025 season with 5 straight wins. Their rotation is lights-out.",
-        "created_date": "2025-04-03T08:00:00Z",
-        "published_date": "2025-04-03T10:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 4,
-      "fields": {
-        "author": 2,
-        "slug": "shohei-two-way-magic",
-        "tags": "Shohei Ohtani, Dodgers",
-        "title": "Shohei's Two-Way Magic",
-        "text": "Ohtani is doing it all—pitching shutouts and hitting bombs. 2025 might be his best year yet.",
-        "created_date": "2025-04-04T07:00:00Z",
-        "published_date": "2025-04-04T09:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 5,
-      "fields": {
-        "author": 2,
-        "slug": "rookie-watch-nl",
-        "tags": "Dodgers, Rookies",
-        "title": "Rookie Watch: NL Standouts",
-        "text": "Several rookies are turning heads already in the National League. Keep your eyes on these guys.",
-        "created_date": "2025-04-05T06:00:00Z",
-        "published_date": "2025-04-05T08:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 6,
-      "fields": {
-        "author": 3,
-        "slug": "braves-bats-on-fire",
-        "tags": "Braves, Offense",
-        "title": "Braves' Bats on Fire",
-        "text": "The Braves are smashing home runs left and right to start 2025. Can anyone slow them down?",
-        "created_date": "2025-04-01T13:00:00Z",
-        "published_date": "2025-04-01T15:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 7,
-      "fields": {
-        "author": 3,
-        "slug": "strider-dominates-opener",
-        "tags": "Spencer Strider, Braves",
-        "title": "Strider Dominates the Opener",
-        "text": "Strider struck out 12 in just 6 innings. He’s locked in for the 2025 season.",
-        "created_date": "2025-04-02T14:00:00Z",
-        "published_date": "2025-04-02T16:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 8,
-      "fields": {
-        "author": 3,
-        "slug": "nl-east-tight-race-early",
-        "tags": "NL East, Braves, Mets, Phillies",
-        "title": "NL East Already Heating Up",
-        "text": "With Braves, Mets, and Phillies all off to strong starts, the NL East race is going to be wild.",
-        "created_date": "2025-04-03T15:00:00Z",
-        "published_date": "2025-04-03T17:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 9,
-      "fields": {
-        "author": 1,
-        "slug": "al-preview-2025",
-        "tags": "AL Preview",
-        "title": "American League 2025 Preview",
-        "text": "Who’s coming out on top in the AL this year? The Yankees, Rangers, and Astros all look strong.",
-        "created_date": "2025-04-04T18:00:00Z",
-        "published_date": "2025-04-04T20:00:00Z"
-      }
-    },
-    {
-      "model": "blog.post",
-      "pk": 10,
-      "fields": {
-        "author": 2,
-        "slug": "mlb-2025-power-rankings",
-        "tags": "Power Rankings, MLB",
-        "title": "MLB 2025 Power Rankings",
-        "text": "Our first power rankings of 2025 are here. Dodgers and Braves top the list—no surprise there.",
-        "created_date": "2025-04-05T19:00:00Z",
-        "published_date": "2025-04-05T21:00:00Z"
-      }
+  {
+    "model": "blog.sports",
+    "pk": 1,
+    "fields": {
+      "name": "MLB",
+      "logo_url": ""
     }
-  ]
-  
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "user1",
+      "password": "pbkdf2_sha256$260000$mockpassword1",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "user2",
+      "password": "pbkdf2_sha256$260000$mockpassword2",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "user3",
+      "password": "pbkdf2_sha256$260000$mockpassword3",
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true
+    }
+  },
+  {
+    "model": "blog.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "favorite_team": "LAD"
+    }
+  },
+  {
+    "model": "blog.userprofile",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "favorite_team": "NYY"
+    }
+  },
+  {
+    "model": "blog.userprofile",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "favorite_team": "BOS"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "description": "Opening day thoughts from a Dodgers fan.",
+      "image_url": "",
+      "slug": "mlb-post-1",
+      "tags": "opening, dodgers, baseball",
+      "title": "MLB Post 1",
+      "text": "<p>Let’s go Dodgers! Excited for the season to begin.</p>",
+      "created_date": "2025-04-01T12:00:00Z",
+      "published_date": "2025-04-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 2,
+    "fields": {
+      "author": 2,
+      "description": "Yankees are taking the AL East this year.",
+      "image_url": "",
+      "slug": "mlb-post-2",
+      "tags": "yankees, al-east, predictions",
+      "title": "MLB Post 2",
+      "text": "<p>Can anyone stop Judge this year? I don’t think so.</p>",
+      "created_date": "2025-04-02T12:00:00Z",
+      "published_date": "2025-04-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 3,
+    "fields": {
+      "author": 3,
+      "description": "Sox fans are ready for redemption.",
+      "image_url": "",
+      "slug": "mlb-post-3",
+      "tags": "redsox, come-back, hope",
+      "title": "MLB Post 3",
+      "text": "<p>Let’s forget last season. New year, new chances.</p>",
+      "created_date": "2025-04-03T12:00:00Z",
+      "published_date": "2025-04-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 4,
+    "fields": {
+      "author": 1,
+      "description": "Walker Buehler looks sharp this spring.",
+      "image_url": "",
+      "slug": "mlb-post-4",
+      "tags": "dodgers, pitching, buehler",
+      "title": "MLB Post 4",
+      "text": "<p>Our rotation might be the best in the league.</p>",
+      "created_date": "2025-04-04T12:00:00Z",
+      "published_date": "2025-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 5,
+    "fields": {
+      "author": 2,
+      "description": "Yankee Stadium is already buzzing.",
+      "image_url": "",
+      "slug": "mlb-post-5",
+      "tags": "nyy, stadium, vibes",
+      "title": "MLB Post 5",
+      "text": "<p>There’s nothing like opening day in the Bronx.</p>",
+      "created_date": "2025-04-05T12:00:00Z",
+      "published_date": "2025-04-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 6,
+    "fields": {
+      "author": 3,
+      "description": "The Fenway Faithful are loyal.",
+      "image_url": "",
+      "slug": "mlb-post-6",
+      "tags": "fenway, redsox, fans",
+      "title": "MLB Post 6",
+      "text": "<p>Even in tough times, Boston shows up strong.</p>",
+      "created_date": "2025-04-06T12:00:00Z",
+      "published_date": "2025-04-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 7,
+    "fields": {
+      "author": 1,
+      "description": "Mookie Betts deserves MVP chatter.",
+      "image_url": "",
+      "slug": "mlb-post-7",
+      "tags": "mookie, MVP, dodgers",
+      "title": "MLB Post 7",
+      "text": "<p>He’s on fire already. Let’s talk MVP.</p>",
+      "created_date": "2025-04-07T12:00:00Z",
+      "published_date": "2025-04-07T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 8,
+    "fields": {
+      "author": 2,
+      "description": "The Bronx Bombers are back.",
+      "image_url": "",
+      "slug": "mlb-post-8",
+      "tags": "yankees, power, offense",
+      "title": "MLB Post 8",
+      "text": "<p>Homers galore. This offense is stacked.</p>",
+      "created_date": "2025-04-08T12:00:00Z",
+      "published_date": "2025-04-08T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 9,
+    "fields": {
+      "author": 3,
+      "description": "Red Sox rookies showing promise.",
+      "image_url": "",
+      "slug": "mlb-post-9",
+      "tags": "prospects, redsox, youth",
+      "title": "MLB Post 9",
+      "text": "<p>Some exciting young talent on the rise.</p>",
+      "created_date": "2025-04-09T12:00:00Z",
+      "published_date": "2025-04-09T12:00:00Z"
+    }
+  },
+  {
+    "model": "blog.post",
+    "pk": 10,
+    "fields": {
+      "author": 1,
+      "description": "Dodger fans: ready for October already?",
+      "image_url": "",
+      "slug": "mlb-post-10",
+      "tags": "playoffs, dodgers, prediction",
+      "title": "MLB Post 10",
+      "text": "<p>Calling it now: we’re going deep in October.</p>",
+      "created_date": "2025-04-10T12:00:00Z",
+      "published_date": "2025-04-10T12:00:00Z"
+    }
+  }
+]

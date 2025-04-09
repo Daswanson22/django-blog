@@ -99,11 +99,13 @@ article p {
     background-color: #005f99; /* Darker blue */
 }
 
-/* Sidebar styling */
 .sidebar {
     flex: 1; /* Takes less space than main content */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Heading styling */
 .sidebar h2 {
     color: #1a1a1a; /* Almost black */
     font-size: 1.25rem;
@@ -112,23 +114,51 @@ article p {
     padding-bottom: 0.5rem;
 }
 
+/* Sidebar list styling */
 .sidebar ul {
     list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 0.5rem; /* Space between boxes */
 }
 
+/* List item styling */
 .sidebar li {
-    margin: 0.5rem 0;
+    margin: 0;
 }
 
+/* Link styling */
 .sidebar a {
     color: #007acc; /* Blue */
     text-decoration: none;
     font-size: 1rem;
-    transition: color 0.3s ease;
+    display: inline-block;
+    padding: 0.5rem 1rem; /* Padding inside the box */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap; /* Prevent text from wrapping inside the box */
 }
 
+/* Hover effect for links */
 .sidebar a:hover {
     color: #333; /* Dark gray on hover */
+    background-color: #e6f1ff; /* Light blue on hover */
+    border-color: #007acc; /* Change border color on hover */
+}
+
+/* Responsiveness - ensure boxes do not exceed the width */
+@media (max-width: 768px) {
+    .sidebar a {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .sidebar ul {
+        gap: 0.3rem; /* Reduced gap on smaller screens */
+    }
 }
 
 /* Mobile responsiveness */

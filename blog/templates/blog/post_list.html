@@ -55,8 +55,8 @@
             </ul>
             <h2>Categories</h2>
             <ul>
-                {% for category in categories %}
-                    <li><a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a></li>
+                {% for team in teams %}
+                    <li><a href="{% url 'blog:team' team.slug %}">{{ team.name }}</a></li>
                 {% endfor %}
             </ul>
             <h2>Tags</h2>

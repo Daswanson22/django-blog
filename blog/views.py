@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import SignUpForm, PostForm
-from .models import Post, UserProfile, Comment, IpAddress
+from .models import Post, UserProfile, Comment, IpAddress, Team, Sport
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -15,6 +15,7 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
 
 def signup(request):
     if request.method == 'POST':
@@ -53,7 +54,8 @@ def logout_view(request):
 
 def post_list(request):
     query = request.GET.get('q')
-    
+    mlb_teams = Team.objects.filter(sport__name='MLB')
+
     if query and query == 'oldest':
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     else:
@@ -62,13 +64,16 @@ def post_list(request):
     if posts.count() == 0:
         return render(request, 'blog/post_list.html', {
             'posts': [],
+            'teams': mlb_teams,
             'message': "No posts are available."
         })
     else:
         return render(request, 'blog/post_list.html', {
             'posts': posts,
+            'teams': mlb_teams,
             'message': ""
         })
+
 
 def post_detail(request, blog_slug):
     post = get_object_or_404(Post, slug=blog_slug)
@@ -83,6 +88,7 @@ def post_detail(request, blog_slug):
         'post': post
     })
 
+
 def upvote(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.user.is_authenticated:
@@ -94,6 +100,7 @@ def upvote(request, pk):
     else:
         return redirect('blog:signup')
 
+
 def comment(request, pk):
     if request.user.is_authenticated:
         post = get_object_or_404(Post, pk=pk)
@@ -104,3 +111,12 @@ def comment(request, pk):
             return HttpResponseRedirect(reverse("blog:post_detail", args=(post.slug,)))
     else:
         return redirect('blog:signup')
+    
+def team_view(request, team_slug):
+    team = Team.objects.get(slug=team_slug)
+    if not team:
+        return HttpResponseNotFound("Team not found.")
+    
+    return render(request, 'blog/teams.html', {
+        'team': team,
+    })
