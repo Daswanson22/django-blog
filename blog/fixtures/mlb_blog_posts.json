@@ -1,6 +1,6 @@
 [
   {
-    "model": "blog.sports",
+    "model": "blog.sport",
     "pk": 1,
     "fields": {
       "name": "MLB",
