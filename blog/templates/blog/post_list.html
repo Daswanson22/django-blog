@@ -42,17 +42,14 @@
         </div>
         <div class="sidebar">
             <h2>Leaderboard</h2>
-            <ul>
+            <ol>
                 {% for user in leaderboard %}
                     <li>
-                        <a href="{% url 'blog:user_profile' user.username %}">
-                            <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s profile picture">
-                            {{ user.username }}
-                        </a>
-                        <p>Score: {{ user.score }}</p>
+                        <p>{{ user }}
+                        </p>
                     </li>
                 {% endfor %}
-            </ul>
+            </ol>
             <h2>Categories</h2>
             <ul>
                 {% for team in teams %}

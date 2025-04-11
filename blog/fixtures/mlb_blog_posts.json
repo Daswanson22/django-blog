@@ -11,7 +11,7 @@
     "model": "auth.user",
     "pk": 1,
     "fields": {
-      "username": "user1",
+      "username": "DodgerDog42",
       "password": "pbkdf2_sha256$260000$mockpassword1",
       "is_superuser": false,
       "is_staff": false,
@@ -22,7 +22,7 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "username": "user2",
+      "username": "BronxBomber99",
       "password": "pbkdf2_sha256$260000$mockpassword2",
       "is_superuser": false,
       "is_staff": false,
@@ -33,7 +33,7 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "username": "user3",
+      "username": "GreenMonsterFan",
       "password": "pbkdf2_sha256$260000$mockpassword3",
       "is_superuser": false,
       "is_staff": false,
@@ -65,16 +65,43 @@
     }
   },
   {
+    "model": "blog.leaderboard",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "upvotes": 0,
+      "created_date": "2025-04-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "blog.leaderboard",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "upvotes": 0,
+      "created_date": "2025-04-10T00:00:00Z"
+    }
+  },
+  {
+    "model": "blog.leaderboard",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "upvotes": 0,
+      "created_date": "2025-04-10T00:00:00Z"
+    }
+  },
+  {
     "model": "blog.post",
     "pk": 1,
     "fields": {
       "author": 1,
-      "description": "Opening day thoughts from a Dodgers fan.",
+      "description": "The Dodgers are looking stacked heading into 2025.",
       "image_url": "",
-      "slug": "mlb-post-1",
-      "tags": "opening, dodgers, baseball",
-      "title": "MLB Post 1",
-      "text": "<p>Let’s go Dodgers! Excited for the season to begin.</p>",
+      "slug": "dodgers-preview-2025",
+      "tags": "dodgers, 2025, preview",
+      "title": "Dodgers 2025: October Bound?",
+      "text": "<p>The Los Angeles Dodgers head into the 2025 season with some serious expectations. Between Betts, Freeman, and a deep pitching rotation, there's no shortage of talent. Fans are already dreaming of October baseball, and with good reason.</p><p>Spring training has shown flashes of dominance, especially from young arms in the bullpen. If the veterans stay healthy and the rookies rise to the occasion, the Dodgers may cruise through the NL West. Here's to another year of Dodger blue magic!</p>",
       "created_date": "2025-04-01T12:00:00Z",
       "published_date": "2025-04-01T12:00:00Z"
     }
@@ -84,12 +111,12 @@
     "pk": 2,
     "fields": {
       "author": 2,
-      "description": "Yankees are taking the AL East this year.",
+      "description": "Yankees' offense is red hot before the season even starts.",
       "image_url": "",
-      "slug": "mlb-post-2",
-      "tags": "yankees, al-east, predictions",
-      "title": "MLB Post 2",
-      "text": "<p>Can anyone stop Judge this year? I don’t think so.</p>",
+      "slug": "yankees-offense-hot",
+      "tags": "yankees, offense, preview",
+      "title": "The Bronx Bombers Are Back",
+      "text": "<p>Spring training is barely over, but it already feels like the Yankees are in midseason form. Aaron Judge is crushing bombs, Stanton is healthy, and the team’s OBP is climbing fast. Yankee Stadium is going to be an intimidating place for visiting pitchers in 2025.</p><p>One underrated storyline? The bullpen. With a mix of seasoned vets and hungry young arms, look for a lot of games to end early if the Yanks have a lead going into the 7th. AL East, beware.</p>",
       "created_date": "2025-04-02T12:00:00Z",
       "published_date": "2025-04-02T12:00:00Z"
     }
@@ -99,12 +126,12 @@
     "pk": 3,
     "fields": {
       "author": 3,
-      "description": "Sox fans are ready for redemption.",
+      "description": "The Red Sox faithful have reasons to believe again.",
       "image_url": "",
-      "slug": "mlb-post-3",
-      "tags": "redsox, come-back, hope",
-      "title": "MLB Post 3",
-      "text": "<p>Let’s forget last season. New year, new chances.</p>",
+      "slug": "redsox-bounceback-2025",
+      "tags": "redsox, 2025, bounceback",
+      "title": "Redemption Year for Boston?",
+      "text": "<p>After a forgettable 2024, the Red Sox are entering 2025 with a chip on their shoulders. With a stronger bullpen and some key offseason signings, this team is looking to rewrite the narrative. The fans at Fenway can feel the momentum shifting.</p><p>Keep an eye on rookie second baseman Jake Castillo. He’s been scorching in camp and could be a breakout star. If the Sox avoid the injury bug and get consistent starts, the AL East race might just get a bit more crowded.</p>",
       "created_date": "2025-04-03T12:00:00Z",
       "published_date": "2025-04-03T12:00:00Z"
     }
@@ -114,12 +141,12 @@
     "pk": 4,
     "fields": {
       "author": 1,
-      "description": "Walker Buehler looks sharp this spring.",
+      "description": "Walker Buehler’s spring stats have fans buzzing.",
       "image_url": "",
-      "slug": "mlb-post-4",
-      "tags": "dodgers, pitching, buehler",
-      "title": "MLB Post 4",
-      "text": "<p>Our rotation might be the best in the league.</p>",
+      "slug": "buehler-ace-watch",
+      "tags": "buehler, dodgers, pitching",
+      "title": "Ace in the Making: Buehler's Time?",
+      "text": "<p>Walker Buehler is starting the season with something to prove. After battling through a couple shaky outings last year, he's retooled his delivery and added velocity. In 12 spring innings, he's racked up 18 strikeouts and only walked 3.</p><p>If Buehler keeps this up, he’ll be in early Cy Young conversations. Combine that with the Dodgers’ stacked offense, and you've got a recipe for dominance. LA fans are fired up.</p>",
       "created_date": "2025-04-04T12:00:00Z",
       "published_date": "2025-04-04T12:00:00Z"
     }
@@ -129,89 +156,14 @@
     "pk": 5,
     "fields": {
       "author": 2,
-      "description": "Yankee Stadium is already buzzing.",
+      "description": "Yankees’ home opener delivers fireworks and hope.",
       "image_url": "",
-      "slug": "mlb-post-5",
-      "tags": "nyy, stadium, vibes",
-      "title": "MLB Post 5",
-      "text": "<p>There’s nothing like opening day in the Bronx.</p>",
+      "slug": "yankees-home-opener",
+      "tags": "yankees, opening-day, excitement",
+      "title": "Opening Day in the Bronx: Electric",
+      "text": "<p>There’s nothing quite like opening day at Yankee Stadium. The crowd, the energy, the smell of hot dogs and victory in the air. From the first pitch, the Yankees looked locked in. Judge went yard. Volpe turned two crisp double plays.</p><p>What stood out most though? The unity. This team feels like a family — one that wants to win it all. 2025 might just be the year it finally clicks for the Bronx Bombers.</p>",
       "created_date": "2025-04-05T12:00:00Z",
       "published_date": "2025-04-05T12:00:00Z"
-    }
-  },
-  {
-    "model": "blog.post",
-    "pk": 6,
-    "fields": {
-      "author": 3,
-      "description": "The Fenway Faithful are loyal.",
-      "image_url": "",
-      "slug": "mlb-post-6",
-      "tags": "fenway, redsox, fans",
-      "title": "MLB Post 6",
-      "text": "<p>Even in tough times, Boston shows up strong.</p>",
-      "created_date": "2025-04-06T12:00:00Z",
-      "published_date": "2025-04-06T12:00:00Z"
-    }
-  },
-  {
-    "model": "blog.post",
-    "pk": 7,
-    "fields": {
-      "author": 1,
-      "description": "Mookie Betts deserves MVP chatter.",
-      "image_url": "",
-      "slug": "mlb-post-7",
-      "tags": "mookie, MVP, dodgers",
-      "title": "MLB Post 7",
-      "text": "<p>He’s on fire already. Let’s talk MVP.</p>",
-      "created_date": "2025-04-07T12:00:00Z",
-      "published_date": "2025-04-07T12:00:00Z"
-    }
-  },
-  {
-    "model": "blog.post",
-    "pk": 8,
-    "fields": {
-      "author": 2,
-      "description": "The Bronx Bombers are back.",
-      "image_url": "",
-      "slug": "mlb-post-8",
-      "tags": "yankees, power, offense",
-      "title": "MLB Post 8",
-      "text": "<p>Homers galore. This offense is stacked.</p>",
-      "created_date": "2025-04-08T12:00:00Z",
-      "published_date": "2025-04-08T12:00:00Z"
-    }
-  },
-  {
-    "model": "blog.post",
-    "pk": 9,
-    "fields": {
-      "author": 3,
-      "description": "Red Sox rookies showing promise.",
-      "image_url": "",
-      "slug": "mlb-post-9",
-      "tags": "prospects, redsox, youth",
-      "title": "MLB Post 9",
-      "text": "<p>Some exciting young talent on the rise.</p>",
-      "created_date": "2025-04-09T12:00:00Z",
-      "published_date": "2025-04-09T12:00:00Z"
-    }
-  },
-  {
-    "model": "blog.post",
-    "pk": 10,
-    "fields": {
-      "author": 1,
-      "description": "Dodger fans: ready for October already?",
-      "image_url": "",
-      "slug": "mlb-post-10",
-      "tags": "playoffs, dodgers, prediction",
-      "title": "MLB Post 10",
-      "text": "<p>Calling it now: we’re going deep in October.</p>",
-      "created_date": "2025-04-10T12:00:00Z",
-      "published_date": "2025-04-10T12:00:00Z"
     }
   }
 ]

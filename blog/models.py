@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.db.models import Sum
 from django_ckeditor_5.fields import CKEditor5Field
 import datetime
 
@@ -129,3 +130,19 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
+
+class Leaderboard(models.Model):
+    # This model will track the users with the most upvotes on their posts
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    upvotes = models.IntegerField(default=0)
+    created_date = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['-upvotes']
+
+    def update_upvotes(self):
+        self.upvotes = Post.objects.filter(author=self.user).aggregate(Sum('upvotes'))['upvotes__sum'] or 0
+        self.save()
+
+    def __str__(self):
+        return f"{self.user.username} - {self.upvotes}"
