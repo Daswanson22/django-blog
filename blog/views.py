@@ -1,12 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound, HttpResponseRedirect, HttpResponse
 from django.utils import timezone
+from django.views import View
 from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 
 from .forms import SignUpForm, PostForm
 from .models import Leaderboard, Post, UserProfile, Comment, IpAddress, Team, Sport
+
+class LoginView(View):
+    template_name = 'registration/login.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = login(request, username=username, password=password)
+        if user is not None:
+            return redirect('blog:post_list')
+        else:
+            return render(request, self.template_name, {'error': 'Invalid credentials'})
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

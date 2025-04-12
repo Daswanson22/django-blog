@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign In - MLB Fan Blog</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}?{% now 'U' %}">
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Sign In</h1>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit">Login</button>
+        </form>
+        <a href="{% url 'login' %}" class="login_link">Don't Have an Account? Sign Up</a>
+    </div>
+
+</body>
+
+</html>
