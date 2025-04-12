@@ -1,6 +1,9 @@
 :root {
     --primary-background-color: #f4f4f4; /* Light background color for the page */
     --form-background-color: #ffffff;    /* White background for the form container */
+    --primary-text-color: #333;             /* Dark text color for primary elements */
+    --secondary-text-color: #666;          /* Gray text color for secondary elements */
+    --primary-color: #fff;                /* Black text color for primary elements */
     --secondary-color: #111;             /* Darker text color for secondary elements */
     --accent-color: #0066cc;             /* Accent color for buttons and headings */
     --button-hover-color: #005bb5;       /* Darker shade for button hover effect */
@@ -8,4 +11,6 @@
     --header-bg: #f1f1f1;                   /* Dark background for the header */
     --header-text-color: #000;           /* White text color for the header */
     --hover-bg: #dddddd;             /* Light gray background for hover effects */
+    ---light-gray-bg: #cccccc; /* Light gray background for sections */
+    --dark-gray-bg: #333; /* Dark gray background for sections */
 }

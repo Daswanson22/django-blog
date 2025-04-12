@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}?{% now 'U' %}">
+
 <div class="container">
     <div class="head-content">
         <div class="image-container">
@@ -12,6 +14,12 @@
             <h1>{{ team.name }}</h1>
             <span>{{ team.abbreviation }}</span>
         </div>
+        <div>
+            <!-- Display total fans associated with dodgers -->
+        </div>
+    </div>
+    <div class="post-container">
+        <!-- Display all recent, popular, and oldest posts about the dodgers -->
     </div>
 </div>
 {% endblock %}

@@ -40,8 +40,8 @@ header a:hover {
 /* Main content styling */
 main {
     max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 0 auto;
+    padding: 0;
 }
 
 /* Responsive adjustments */
