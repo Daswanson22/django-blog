@@ -6,7 +6,8 @@ from .models import UserProfile, Post, Team
 
 class SignUpForm(UserCreationForm):
     favorite_team = forms.ChoiceField(
-            choices=UserProfile._meta.get_field('favorite_team').choices,
+            choices=Team.objects.values_list('id', 'name'),
+            widget=forms.Select(attrs={'class': 'form-control'}),
             help_text="Select your favorite team."
         )
     class Meta:

@@ -41,11 +41,66 @@
     }
   },
   {
+    "model": "blog.team",
+    "pk": 1,
+    "fields": {
+      "name": "Los Angeles Dodgers",
+      "abbreviation": "LAD",
+      "slug": "los-angeles-dodgers",
+      "sport": 1,
+      "logo_url": ""
+    }
+  },
+  {
+    "model": "blog.team",
+    "pk": 2,
+    "fields": {
+      "name": "New York Yankees",
+      "abbreviation": "NYY",
+      "slug": "new-york-yankees",
+      "sport": 1,
+      "logo_url": ""
+    }
+  },
+  {
+    "model": "blog.team",
+    "pk": 3,
+    "fields": {
+      "name": "Boston Red Sox",
+      "abbreviation": "BOS",
+      "slug": "boston-red-sox",
+      "sport": 1,
+      "logo_url": ""
+    }
+  },
+  {
+    "model": "blog.team",
+    "pk": 4,
+    "fields": {
+      "name": "Chicago Cubs",
+      "abbreviation": "CHC",
+      "slug": "chicago-cubs",
+      "sport": 1,
+      "logo_url": ""
+    }
+  },
+  {
+    "model": "blog.team",
+    "pk": 5,
+    "fields": {
+      "name": "San Francisco Giants",
+      "abbreviation": "SF",
+      "slug": "san-francisco-giants",
+      "sport": 1,
+      "logo_url": ""
+    }
+  },
+  {
     "model": "blog.userprofile",
     "pk": 1,
     "fields": {
       "user": 1,
-      "favorite_team": "LAD"
+      "favorite_team": 1
     }
   },
   {
@@ -53,7 +108,7 @@
     "pk": 2,
     "fields": {
       "user": 2,
-      "favorite_team": "NYY"
+      "favorite_team": 2
     }
   },
   {
@@ -61,7 +116,7 @@
     "pk": 3,
     "fields": {
       "user": 3,
-      "favorite_team": "BOS"
+      "favorite_team": 3
     }
   },
   {
@@ -101,7 +156,7 @@
       "slug": "dodgers-preview-2025",
       "tags": "dodgers, 2025, preview",
       "title": "Dodgers 2025: October Bound?",
-      "text": "<p>The Los Angeles Dodgers head into the 2025 season with some serious expectations. Between Betts, Freeman, and a deep pitching rotation, there's no shortage of talent. Fans are already dreaming of October baseball, and with good reason.</p><p>Spring training has shown flashes of dominance, especially from young arms in the bullpen. If the veterans stay healthy and the rookies rise to the occasion, the Dodgers may cruise through the NL West. Here's to another year of Dodger blue magic!</p>",
+      "text": "<p>The Los Angeles Dodgers head into the 2025 season with some serious expectations...</p>",
       "created_date": "2025-04-01T12:00:00Z",
       "published_date": "2025-04-01T12:00:00Z"
     }
@@ -116,7 +171,7 @@
       "slug": "yankees-offense-hot",
       "tags": "yankees, offense, preview",
       "title": "The Bronx Bombers Are Back",
-      "text": "<p>Spring training is barely over, but it already feels like the Yankees are in midseason form. Aaron Judge is crushing bombs, Stanton is healthy, and the team’s OBP is climbing fast. Yankee Stadium is going to be an intimidating place for visiting pitchers in 2025.</p><p>One underrated storyline? The bullpen. With a mix of seasoned vets and hungry young arms, look for a lot of games to end early if the Yanks have a lead going into the 7th. AL East, beware.</p>",
+      "text": "<p>Spring training is barely over, but it already feels like the Yankees are in midseason form...</p>",
       "created_date": "2025-04-02T12:00:00Z",
       "published_date": "2025-04-02T12:00:00Z"
     }
@@ -131,7 +186,7 @@
       "slug": "redsox-bounceback-2025",
       "tags": "redsox, 2025, bounceback",
       "title": "Redemption Year for Boston?",
-      "text": "<p>After a forgettable 2024, the Red Sox are entering 2025 with a chip on their shoulders. With a stronger bullpen and some key offseason signings, this team is looking to rewrite the narrative. The fans at Fenway can feel the momentum shifting.</p><p>Keep an eye on rookie second baseman Jake Castillo. He’s been scorching in camp and could be a breakout star. If the Sox avoid the injury bug and get consistent starts, the AL East race might just get a bit more crowded.</p>",
+      "text": "<p>After a forgettable 2024, the Red Sox are entering 2025 with a chip on their shoulders...</p>",
       "created_date": "2025-04-03T12:00:00Z",
       "published_date": "2025-04-03T12:00:00Z"
     }
@@ -141,12 +196,12 @@
     "pk": 4,
     "fields": {
       "author": 1,
-      "description": "Walker Buehler’s spring stats have fans buzzing.",
+      "description": "Walker Buehler\u2019s spring stats have fans buzzing.",
       "image_url": "",
       "slug": "buehler-ace-watch",
       "tags": "buehler, dodgers, pitching",
       "title": "Ace in the Making: Buehler's Time?",
-      "text": "<p>Walker Buehler is starting the season with something to prove. After battling through a couple shaky outings last year, he's retooled his delivery and added velocity. In 12 spring innings, he's racked up 18 strikeouts and only walked 3.</p><p>If Buehler keeps this up, he’ll be in early Cy Young conversations. Combine that with the Dodgers’ stacked offense, and you've got a recipe for dominance. LA fans are fired up.</p>",
+      "text": "<p>Walker Buehler is starting the season with something to prove...</p>",
       "created_date": "2025-04-04T12:00:00Z",
       "published_date": "2025-04-04T12:00:00Z"
     }
@@ -156,12 +211,12 @@
     "pk": 5,
     "fields": {
       "author": 2,
-      "description": "Yankees’ home opener delivers fireworks and hope.",
+      "description": "Yankees\u2019 home opener delivers fireworks and hope.",
       "image_url": "",
       "slug": "yankees-home-opener",
       "tags": "yankees, opening-day, excitement",
       "title": "Opening Day in the Bronx: Electric",
-      "text": "<p>There’s nothing quite like opening day at Yankee Stadium. The crowd, the energy, the smell of hot dogs and victory in the air. From the first pitch, the Yankees looked locked in. Judge went yard. Volpe turned two crisp double plays.</p><p>What stood out most though? The unity. This team feels like a family — one that wants to win it all. 2025 might just be the year it finally clicks for the Bronx Bombers.</p>",
+      "text": "<p>There\u2019s nothing quite like opening day at Yankee Stadium...</p>",
       "created_date": "2025-04-05T12:00:00Z",
       "published_date": "2025-04-05T12:00:00Z"
     }
