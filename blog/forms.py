@@ -3,10 +3,14 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import UserProfile, Post, Team
+from django.utils.functional import lazy
+
+def get_all_teams():
+    return Team.objects.values_list('id', 'name')
 
 class SignUpForm(UserCreationForm):
     favorite_team = forms.ChoiceField(
-            choices=Team.objects.values_list('id', 'name'),
+            choices=lazy(get_all_teams, list)(),
             widget=forms.Select(attrs={'class': 'form-control'}),
             help_text="Select your favorite team."
         )
