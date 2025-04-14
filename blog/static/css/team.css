@@ -29,3 +29,90 @@ img {
     width: 100px;
     display: block;
 }
+
+/* Container holding all posts */
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Each article (post) */
+.post-container article {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: #222;
+}
+
+/* Author and date container */
+.post-container article > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Title */
+.post-container h6 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+#link_title {
+    color: #007acc;
+    text-decoration: none;
+}
+
+#link_title:hover {
+    text-decoration: underline;
+    color: #005c99;
+}
+
+/* Post description/text */
+.post-container p {
+    color: #333;
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+/* Stats and share section */
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.post-stats i {
+    margin-right: 0.25rem;
+    color: #007acc;
+}
+
+.post-stats > div:first-child {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Share button */
+#share-button {
+    background: none;
+    border: none;
+    color: #007acc;
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+#share-button:hover {
+    text-decoration: underline;
+}

@@ -23,7 +23,7 @@ class Team(models.Model):
     slug = models.SlugField(max_length=50, default='', blank=True)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     logo_url = models.URLField(blank=True, null=True)
-
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)

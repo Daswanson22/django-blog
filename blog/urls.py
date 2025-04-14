@@ -9,5 +9,5 @@ urlpatterns = [
     path('blog/<slug:blog_slug>', views.post_detail, name='post_detail'),
     path('upvote/<int:pk>', views.upvote, name='upvote'),
     path('comment/<int:pk>', views.comment, name='comment'),
-    path('team/blog/<slug:team_slug>', views.team_view, name='team'),
+    path('team/<slug:team_slug>', views.team_view, name='team'),
 ]

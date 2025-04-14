@@ -132,9 +132,9 @@ article p {
 .sidebar a {
     color: #007acc; /* Blue */
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 14px;
     display: inline-block;
-    padding: 0.5rem 1rem; /* Padding inside the box */
+    padding: 0.5rem; /* Padding inside the box */
     border: 1px solid #ddd; /* Light border */
     border-radius: 4px; /* Rounded corners */
     background-color: #f9f9f9; /* Light background */
@@ -147,6 +147,44 @@ article p {
     color: #333; /* Dark gray on hover */
     background-color: #e6f1ff; /* Light blue on hover */
     border-color: #007acc; /* Change border color on hover */
+}
+
+.sidebar .tags {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap to the next line */
+    gap: 0.5rem; /* Space between tags */
+}
+
+.sidebar .tags li {
+    margin: 0;
+    padding: 0.5rem 1rem; /* Padding inside the tag box */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.sidebar .tags li a {
+    color: #007acc; /* Blue */
+    text-decoration: none;
+    font-size: 1rem;
+    display: block; /* Make the entire box clickable */
+}
+
+.sidebar .leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between leaderboard items */
+}
+
+.sidebar.leaderboard li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem; /* Padding inside the leaderboard item */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Responsiveness - ensure boxes do not exceed the width */

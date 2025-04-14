@@ -139,9 +139,16 @@ def comment(request, pk):
     
 def team_view(request, team_slug):
     team = Team.objects.get(slug=team_slug)
+    total_fans = UserProfile.objects.filter(favorite_team=team).count()
+    posts = Post.objects.filter(author__userprofile__favorite_team=team).order_by('-created_date')
+    top_team_bloggers = UserProfile.objects.filter(favorite_team=team).order_by('-user__leaderboard__upvotes')[:10]
+    team.fans = total_fans
+    team.posts = posts
+    team.top_team_bloggers = top_team_bloggers
+
     if not team:
         return HttpResponseNotFound("Team not found.")
     
-    return render(request, 'blog/teams.html', {
+    return render(request, 'blog/team_detail.html', {
         'team': team,
     })

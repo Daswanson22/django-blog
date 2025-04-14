@@ -41,27 +41,35 @@
             {% endif %}
         </div>
         <div class="sidebar">
-            <h2>Leaderboard</h2>
-            <ol>
-                {% for user in leaderboard %}
-                    <li>
-                        <p>{{ user }}
-                        </p>
-                    </li>
-                {% endfor %}
-            </ol>
-            <h2>Categories</h2>
-            <ul>
-                {% for team in teams %}
-                    <li><a href="{% url 'blog:team' team.slug %}">{{ team.name }}</a></li>
-                {% endfor %}
-            </ul>
-            <h2>Tags</h2>
-            <ul>
-                {% for tag in tags %}
-                    <li><a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a></li>
-                {% endfor %}
-            </ul>
+            <div class="leaderboard">
+                <h2>Leaderboard</h2>
+                <ol>
+                    {% for user in leaderboard %}
+                        <li>
+                            <p>{{ user }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            
+            <div class="categories">
+                <h2>Categories</h2>
+                <ul>
+                    {% for team in teams %}
+                        <li><a href="{% url 'blog:team' team.slug %}">{{ team.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="tags">
+                <h2>Tags</h2>
+                <ul>
+                    {% for tag in tags %}
+                        <li><a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
     

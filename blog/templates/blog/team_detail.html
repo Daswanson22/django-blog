@@ -1,0 +1,57 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/team.css' %}?{% now 'U' %}">
+
+<div class="container">
+    <div class="head-content">
+        <div class="image-container">
+            <img src="{{ team.logo_url }}" alt="Team Logo">
+        </div>
+        <div>
+            <h1>{{ team.name }}</h1>
+            <span>{{ team.abbreviation }}</span>
+        </div>
+        <div>
+            <!-- Display total fans associated with dodgers -->
+            <p>Total Fans: {{ team.fans }}</p>
+            <p>Loud Mouths</p>
+            {% for leaders in team.top_team_bloggers %}
+                <h6>{{ leaders.user }} </h6>
+            {% endfor %}            
+        </div>
+    </div>
+    <div class="post-container">
+        <!-- Display all recent, popular, and oldest posts about the dodgers -->
+        {% for post in team.posts.all %}
+
+        <article>
+            <div>
+                <p>Author: {{ post.author }}</p>
+                <time>{{ post.published_date }}</time>
+            </div>
+            <h6><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h6>
+            {% if post.description %}
+                <p>{{ post.description|safe|linebreaksbr|truncatewords:30 }}</p>
+            {% else %}
+                <p>{{ post.text|safe|linebreaksbr|truncatewords:20 }}</p>
+            {% endif %}
+            <div class="post-stats">
+                <div>
+                    <p><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }}</p>
+                    <p><i class="fa-solid fa-eye"></i>{{ post.number_of_views }}</p>
+                    <p><i class="fa-solid fa-comment"></i>{{ post.comment_set.all.count }}</p>
+                </div>
+                <div>
+                    <button id="share-button">Share</button>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+            <p>No posts available for this team.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
