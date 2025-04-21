@@ -7,21 +7,25 @@
 
 <div class="container">
     <div class="head-content">
-        <div class="image-container">
-            <img src="{{ team.logo_url }}" alt="Team Logo">
+        <img class="stadium" src="{{ team.stadium_url }}" alt="{{ team.stadium_alt }}">
+        <div class="team-info">
+            <div class="image-container">
+                <img class="team-logo" src="{{ team.logo_url }}" alt="Team Logo">
+            </div>
+            <div>
+                <h1>{{ team.name }}</h1>
+                <span>{{ team.abbreviation }}</span>
+            </div>
+            <div>
+                <!-- Display total fans associated with dodgers -->
+                <p>Fans: {{ team.fans }}</p>
+                <p>Loud Mouths</p>
+                {% for leaders in team.top_team_bloggers %}
+                    <h6>{{ leaders.user }} </h6>
+                {% endfor %}            
+            </div>
         </div>
-        <div>
-            <h1>{{ team.name }}</h1>
-            <span>{{ team.abbreviation }}</span>
-        </div>
-        <div>
-            <!-- Display total fans associated with dodgers -->
-            <p>Total Fans: {{ team.fans }}</p>
-            <p>Loud Mouths</p>
-            {% for leaders in team.top_team_bloggers %}
-                <h6>{{ leaders.user }} </h6>
-            {% endfor %}            
-        </div>
+        
     </div>
     <div class="post-container">
         <!-- Display all recent, popular, and oldest posts about the dodgers -->

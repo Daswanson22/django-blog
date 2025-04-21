@@ -23,6 +23,8 @@ class Team(models.Model):
     slug = models.SlugField(max_length=50, default='', blank=True)
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     logo_url = models.URLField(blank=True, null=True)
+    stadium_url = models.URLField(blank=True, null=True, default="")
+    stadium_alt = models.CharField(max_length=50, blank=True, null=True, default="")
     
     def save(self, *args, **kwargs):
         if not self.slug:
