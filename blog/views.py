@@ -155,26 +155,32 @@ def team_view(request, team_slug):
     })
 
 def leaderboard(request):
+    # Top 30 users by leaderboard model (cached or updated manually)
     leaderboard = Leaderboard.objects.all().order_by('-upvotes')[:30]
-    # Sum all the users upvotes based on team they are associated with
+
+    # Preload related user profiles and compute user-level stats
+    user_profiles = UserProfile.objects.select_related('user', 'favorite_team')
+    for profile in user_profiles:
+        profile.posts_count = profile.total_posts()
+        profile.comment_count = profile.total_comments()
+        profile.post_upvotes = profile.total_post_upvotes()
+        profile.comment_upvotes = profile.total_comment_upvotes()
+
+    # Add team-level stats using Team helper methods
     teams = Team.objects.all()
     for team in teams:
-        team.total_upvotes = 0
-        users = UserProfile.objects.filter(favorite_team=team)
-
-        for user in users:
-            user_posts = Post.objects.filter(author=user.user)
-            for post in user_posts:
-                team.total_upvotes += post.number_of_upvotes()
+        team.total_upvotes = team.total_team_post_upvotes()
+        team.total_posts = team.total_team_posts()
+        team.total_comments = team.total_team_comments()
+        team.total_comment_upvotes = team.total_team_comment_upvotes()
 
     if not leaderboard:
         return HttpResponseNotFound("No leaderboard data available.")
     if not teams:
         return HttpResponseNotFound("No teams available.")
-    
-    print(leaderboard)
-    print(teams)
+
     return render(request, 'blog/leaderboard.html', {
         'leaderboard': leaderboard,
         'teams': teams,
+        'user_profiles': user_profiles,
     })
