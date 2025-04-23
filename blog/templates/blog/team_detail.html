@@ -2,6 +2,19 @@
 
 {% load static %}
 
+{% block title %}See what people are saying about the {{ team.name }} | FanRant {% endblock %}
+
+{% block meta %}
+<meta name="description" content="Catch the latest posts and fan opinions about the {{ team.name }}. Join the discussion and support your squad!">
+<meta name="keywords" content="{{ team.name }}, {{ team.abbreviation }}, MLB Fans, Baseball Forum, Team Blog, Baseball">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="Join the {{ team.name }} Fan Discussion">
+<meta property="og:description" content="From hot takes to hilarious smack talk, see what fans are saying about the {{ team.name }}.">
+<meta property="og:image" content="{{ team.logo_url }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/team.css' %}?{% now 'U' %}">
 

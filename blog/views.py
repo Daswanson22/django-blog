@@ -152,3 +152,28 @@ def team_view(request, team_slug):
     return render(request, 'blog/team_detail.html', {
         'team': team,
     })
+
+def leaderboard(request):
+    leaderboard = Leaderboard.objects.all().order_by('-upvotes')[:30]
+    # Sum all the users upvotes based on team they are associated with
+    teams = Team.objects.all()
+    for team in teams:
+        team.total_upvotes = 0
+        users = UserProfile.objects.filter(favorite_team=team)
+
+        for user in users:
+            user_posts = Post.objects.filter(author=user.user)
+            for post in user_posts:
+                team.total_upvotes += post.number_of_upvotes()
+
+    if not leaderboard:
+        return HttpResponseNotFound("No leaderboard data available.")
+    if not teams:
+        return HttpResponseNotFound("No teams available.")
+    
+    print(leaderboard)
+    print(teams)
+    return render(request, 'blog/leaderboard.html', {
+        'leaderboard': leaderboard,
+        'teams': teams,
+    })

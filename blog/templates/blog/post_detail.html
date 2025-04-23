@@ -1,6 +1,17 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 
+{% block title %}{{ post.title }} | {{ post.author }} | YourSiteName{% endblock %}
+{% block meta %}
+<meta name="description" content="{{ post.description|default:post.text|truncatewords:25 }}">
+<meta name="keywords" content="{% for tag in post.tags.all %}{{ tag.name }}{% if not forloop.last %}, {% endif %}{% endfor %}">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.description|default:post.text|truncatewords:25 }}">
+<meta property="og:image" content="{{ post.author.profile.avatar_url|default:'/static/images/default_avatar.png' }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
 
 {% block content %}
     <link rel="stylesheet" href="{% static 'css/detail.css' %}?{% now 'U' %}">

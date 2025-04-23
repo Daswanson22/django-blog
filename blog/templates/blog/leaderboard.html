@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block title %}MLB Fan Blog - Leaderboard{% endblock %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/leaderboard.css' %}?{% now 'U' %}">
+
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <div class="smack-talk-leaderboard">
+            <h2>Smack Talk Leaderboard</h2>
+            {% for user in leaderboard %}
+                <ol class="blogger">
+                    <ul>{{ user }} {{ user.upvote_count }}</ul>
+                </ol>
+            {% empty %}
+                <p>No bloggers found.</p>
+            {% endfor %}
+        </div>
+
+        <div class="team-leaderboard">
+            <h2>Top Teams</h2>
+            {% for team in teams %}
+                <div class="team-blogger">
+                    <h3>{{ team.name }} {{team.total_upvotes}}</h3>
+                </div>
+            {% empty %}
+                <p>No teams found.</p>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+{% endblock %}
