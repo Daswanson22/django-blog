@@ -100,91 +100,87 @@ article p {
 }
 
 .sidebar {
-    flex: 1; /* Takes less space than main content */
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    background-color: var(--primary-background-color);
     display: flex;
     flex-direction: column;
+    gap: 1.5rem;
 }
 
-/* Heading styling */
 .sidebar h2 {
-    color: #1a1a1a; /* Almost black */
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #666; /* Dark gray */
-    padding-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
 }
 
-/* Sidebar list styling */
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    gap: 0.5rem; /* Space between boxes */
-}
-
-/* List item styling */
-.sidebar li {
-    margin: 0;
-}
-
-/* Link styling */
-.sidebar a {
-    color: #007acc; /* Blue */
-    text-decoration: none;
-    font-size: 14px;
-    display: inline-block;
-    padding: 0.5rem; /* Padding inside the box */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background */
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    white-space: nowrap; /* Prevent text from wrapping inside the box */
-}
-
-/* Hover effect for links */
-.sidebar a:hover {
-    color: #333; /* Dark gray on hover */
-    background-color: #e6f1ff; /* Light blue on hover */
-    border-color: #007acc; /* Change border color on hover */
-}
-
+.sidebar .leaderboard,
+.sidebar .categories,
 .sidebar .tags {
-    display: flex;
-    flex-wrap: wrap; /* Allow tags to wrap to the next line */
-    gap: 0.5rem; /* Space between tags */
+    background-color: var(--form-background-color);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-.sidebar .tags li {
+.leaderboard ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
     margin: 0;
-    padding: 0.5rem 1rem; /* Padding inside the tag box */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background */
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.sidebar .tags li a {
-    color: #007acc; /* Blue */
+
+.leaderboard li p {
+    color: var(--primary-text-color);
+    margin: 0.25rem 0;
+    font-weight: 500;
+}
+
+.categories .team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    justify-items: center;
+}
+
+.team-card img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background-color: var(--form-background-color);
+    border: 1px solid var(---light-gray-bg);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+.tags ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.tags li a {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    background-color: var(---light-gray-bg);
+    color: var(--secondary-text-color);
     text-decoration: none;
-    font-size: 1rem;
-    display: block; /* Make the entire box clickable */
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.sidebar .leaderboard {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem; /* Space between leaderboard items */
-}
-
-.sidebar.leaderboard li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem; /* Padding inside the leaderboard item */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background */
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+.tags li a:hover {
+    background-color: var(--hover-bg);
+    color: var(--accent-color);
 }
 
 /* Responsiveness - ensure boxes do not exceed the width */

@@ -55,11 +55,13 @@
             
             <div class="categories">
                 <h2>Categories</h2>
-                <ul>
+                <div class="team-grid">
                     {% for team in teams %}
-                        <li><a href="{% url 'blog:team' team.slug %}">{{ team.name }}</a></li>
+                        <a href="{% url 'blog:team' team.slug %}" class="team-card">
+                            <img src="{{ team.logo_url }}" alt="">
+                        </a>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
             
             <div class="tags">

@@ -71,6 +71,7 @@ def logout_view(request):
 def post_list(request):
     query = request.GET.get('q')
     mlb_teams = Team.objects.filter(sport__name='MLB')
+    print(mlb_teams)
     leaderboard = Leaderboard.objects.all().order_by('-upvotes')[:10]
     print(leaderboard)
     if query and query == 'oldest':
