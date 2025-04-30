@@ -19,7 +19,7 @@
     <article>
         {% if post.published_date %}
             <h1 class="title">{{ post.title }}</h1>
-            <p class="author">Posted By: {{ post.author }}</p>
+            <a href="{% url 'blog:user' author_profile.slug %}" class="author">Posted By: {{ post.author }}</a>
             <div class="stats">
                 <time>{{ post.published_date }}</time>
 

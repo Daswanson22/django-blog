@@ -39,7 +39,9 @@ def signup(request):
         print(form.error_messages)
         if form.is_valid():
             user = form.save()
-            UserProfile.objects.create(user=user, favorite_team=form.cleaned_data['favorite_team'])
+            favorite_team = Team.objects.get(id=form.cleaned_data['favorite_team'])
+            print(f"Favorite team: {favorite_team}")
+            UserProfile.objects.create(user=user, favorite_team=favorite_team)
             login(request, user)
             return redirect('blog:post_list')
         else:
@@ -97,6 +99,10 @@ def post_list(request):
 
 def post_detail(request, blog_slug):
     post = get_object_or_404(Post, slug=blog_slug)
+    comments = Comment.objects.filter(post=post).order_by('-created_date')
+    total_comments = comments.count()
+    author_profile = UserProfile.objects.get(user=post.author)
+
     if request.method == "GET":
         ip = get_client_ip(request)
         if IpAddress.objects.filter(ip_address=ip).exists():
@@ -104,9 +110,15 @@ def post_detail(request, blog_slug):
         else:
             IpAddress.objects.create(ip_address=ip)
             post.views.add(IpAddress.objects.get(ip_address=ip))
-    return render(request, 'blog/post_detail.html', {
-        'post': post
-    })
+    
+    payload = {
+        'post': post,
+        'comments': comments,
+        'total_comments': total_comments,
+        'author_profile': author_profile,
+    }
+    print(payload)
+    return render(request, 'blog/post_detail.html', payload)
 
 
 def upvote(request, pk):
@@ -183,4 +195,24 @@ def leaderboard(request):
         'leaderboard': leaderboard,
         'teams': teams,
         'user_profiles': user_profiles,
+    })
+
+def profile_view(request, user_slug):
+    user = get_object_or_404(UserProfile, slug=user_slug)
+    posts = Post.objects.filter(author=user.user).order_by('-created_date')
+    comments = Comment.objects.filter(user=user.user).order_by('-created_date')
+    total_posts = user.total_posts()
+    total_comments = user.total_comments()
+    total_upvotes = user.total_post_upvotes() + user.total_comment_upvotes()
+
+    if not user:
+        return HttpResponseNotFound("User not found.")
+
+    return render(request, 'blog/profile.html', {
+        'user': user,
+        'posts': posts,
+        'comments': comments,
+        'total_posts': total_posts,
+        'total_comments': total_comments,
+        'total_upvotes': total_upvotes,
     })

@@ -84,8 +84,9 @@
       "abbreviation": "LAA",
       "slug": "los-angeles-angels",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Los_Angeles_Angels_Cap_Insignia.svg/120px-Los_Angeles_Angels_Cap_Insignia.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Angelstadiummarch2019.jpg/330px-Angelstadiummarch2019.jpg",
+      "stadium_alt": "Angel Stadium of Anaheim"
     }
   },
   {
@@ -96,8 +97,9 @@
       "abbreviation": "ATH",
       "slug": "las-vegas-althetics",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Oakland_A%27s_logo.svg/120px-Oakland_A%27s_logo.svg.png",
+      "stadium_url": "https://ballparkexperience.athletics.com/assets/images/stadium-image.jpg",
+      "stadium_alt": "Las Vegas Ballpark"
     }
   },
   {
@@ -108,8 +110,8 @@
       "abbreviation": "HOU",
       "slug": "houston-astros",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Houston-Astros-Logo.svg/120px-Houston-Astros-Logo.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Houston%2C_Texas_%282024%29_-_09.jpg/330px-Houston%2C_Texas_%282024%29_-_09.jpg"
     }
   },
   {
@@ -120,8 +122,8 @@
       "abbreviation": "SEA",
       "slug": "seattle-mariners",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/Seattle_Mariners_logo_%28low_res%29.svg/120px-Seattle_Mariners_logo_%28low_res%29.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/SafecoFieldTop.jpg/330px-SafecoFieldTop.jpg"
     }
   },
   {
@@ -132,8 +134,8 @@
       "abbreviation": "SD",
       "slug": "san-diego-padres",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/San_Diego_Padres_%282020%29_cap_logo.svg/120px-San_Diego_Padres_%282020%29_cap_logo.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Petco_Park_Padres_Game.jpg/250px-Petco_Park_Padres_Game.jpg"
     }
   },
   {
@@ -156,8 +158,8 @@
       "abbreviation": "ARI",
       "slug": "arizona-diamondbacks",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Arizona_Diamondbacks_logo_teal.svg/120px-Arizona_Diamondbacks_logo_teal.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Reserve_A-10_Warthogs_Flyover_2023_World_Series_%288099146%29.jpg/330px-Reserve_A-10_Warthogs_Flyover_2023_World_Series_%288099146%29.jpg"
     }
   },
   {
@@ -168,8 +170,8 @@
       "abbreviation": "PHI",
       "slug": "phillidelphia-phillies",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f0/Philadelphia_Phillies_%282019%29_logo.svg/120px-Philadelphia_Phillies_%282019%29_logo.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Citizens_Bank_Park_2021.jpg/330px-Citizens_Bank_Park_2021.jpg"
     }
   },
   {
@@ -180,8 +182,8 @@
       "abbreviation": "NYM",
       "slug": "new-york-mets",
       "sport": 1,
-      "logo_url": "",
-      "stadium_url": ""
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/New_York_Mets.svg/250px-New_York_Mets.svg.png",
+      "stadium_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Citi_Field_Night_Game.jpg/330px-Citi_Field_Night_Game.jpg"
     }
   },
   {

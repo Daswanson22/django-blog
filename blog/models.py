@@ -49,6 +49,13 @@ class Team(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     favorite_team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, blank=True)
+    slug = models.SlugField(max_length=50, default='', blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            slug_text = self.user.username
+            self.slug = slugify(slug_text)
+        super(UserProfile, self).save(*args, **kwargs)
 
     def get_favorite_team(self):
         return self.favorite_team
@@ -67,7 +74,7 @@ class UserProfile(models.Model):
         return Comment.objects.filter(user=self.user).annotate(upvote_count=Count('upvotes')).aggregate(total=Sum('upvote_count'))['total'] or 0
 
     def __str__(self):
-        return f"{self.user.username} - {self.favorite_team}"
+        return f"{self.user.username} - {self.favorite_team} - {self.slug}"
     
 class IpAddress(models.Model):
     ip_address = models.GenericIPAddressField(null=True, blank=True)
