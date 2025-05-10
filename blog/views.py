@@ -5,7 +5,7 @@ from django.views import View
 from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Count
 from .forms import SignUpForm, PostForm
 from .models import Leaderboard, Post, UserProfile, Comment, IpAddress, Team, Sport
 
@@ -76,10 +76,36 @@ def post_list(request):
     print(mlb_teams)
     leaderboard = Leaderboard.objects.all().order_by('-upvotes')[:10]
     print(leaderboard)
-    if query and query == 'oldest':
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+
+    posts = []
+    print(query)
+    if query:
+        if query == "best":
+            posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-upvotes', '-views', '-created_date')
+            posts = posts.annotate(
+                score=0.8 * Count('upvotes') + 0.1 * Count('views') + 0.7 * Count('comment')
+            ).order_by('-score')
+            print(posts)
+        elif query == "top":
+            posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')
+        elif query == "rising":
+            posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-created_date')
+        elif query == "new":
+            posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-created_date')
     else:
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        # Criteria for "best" posts can be defined here
+        # The best posts can be defined as having the following traits:
+        # 1. Published date is less than or equal to the current date
+        # 2. The post has been upvoted by the most users
+        # 3. The post has a high amount of views
+        # 4. The post has a high amount of comments
+        # 5. Accumulated score based on the above criteria
+        #       - Score = (upvotes * .8) + (views * .1) + (comments * .7)   
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-upvotes', '-views', '-created_date')
+        posts = posts.annotate(
+            score=0.8 * Count('upvotes') + 0.1 * Count('views') + 0.7 * Count('comment')
+        ).order_by('-score')
+        print(posts)
 
     if posts.count() == 0:
         return render(request, 'blog/post_list.html', {

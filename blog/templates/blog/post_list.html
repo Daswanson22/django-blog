@@ -7,8 +7,19 @@
         <div class="main-content">
             <div class="filter-container">
                 <select id="filter" name="filter">
-                    <option value="newest">Recent</option>
-                    <option value="oldest">Oldest</option>
+                    <optgroup label="Sort By">
+                        <option value="best">Best</option>
+                        <option value="rising">Rising</option>
+                        <option value="top">Top</option>
+                    </optgroup>
+                </select>
+                <select id="filter" name="filter" >
+                    <optgroup label="Sort By">
+                        <option value="upvotes">All Teams</option>
+                        {% for team in teams %}
+                            <option value="{{ team.slug }}">{{ team.name }}</option>
+                        {% endfor %}
+                    </optgroup>
                 </select>
             </div>
             {% if posts.count == 0 %}

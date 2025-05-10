@@ -224,3 +224,4 @@ class PostUpvoteViewTests(TestCase):
         response = self.client.post(reverse('blog:upvote', args=[post.pk]))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('blog:signup'))
+
