@@ -6,44 +6,51 @@
     <div class="container">
         <div class="main-content">
             <div class="filter-container">
-                <select id="filter" name="filter">
+                <select id="filter" class="filter" name="filter">
                     <optgroup label="Sort By">
                         <option value="best">Best</option>
                         <option value="rising">Rising</option>
                         <option value="top">Top</option>
                     </optgroup>
                 </select>
-                <select id="filter" name="filter" >
+                <select id="team-filter" class="filter" name="team-filter" >
                     <optgroup label="Sort By">
-                        <option value="upvotes">All Teams</option>
+                        <option value="any">All Teams</option>
                         {% for team in teams %}
-                            <option value="{{ team.slug }}">{{ team.name }}</option>
+                            <option value="{{ team.id }}">{{ team.name }}</option>
                         {% endfor %}
                     </optgroup>
                 </select>
             </div>
             {% if posts.count == 0 %}
-                <p>{{ message }}</p>
+                <p>There is nothing to display.</p>
             {% else %}
             <div class="post-container">
                 {% for post in posts %}
                 <article>
-                    <p>Author: {{ post.author }}</p>
-                    <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
-                    {% if post.description %}
-                        <p>{{ post.description|safe|linebreaksbr|truncatewords:30 }}</p>
-                    {% else %}
-                        <p>{{ post.text|safe|linebreaksbr|truncatewords:20 }}</p>
-                    {% endif %}
+                    <div class="post-user-container">
+                        <div>
+                            <img src="{{ post.author.favorite_team.logo_url }}" alt="Team Logo">
+                            <p><b>{{ post.author.favorite_team.abbreviation }}</b>/{{ post.author }}</p>
+                        </div>
+                        <time>{{ post.published_date }}</time>
+                    </div>
+                    
+                    <div class="post-content-container">
+                        <h2><a href="{% url 'blog:post_detail' post.slug %}" id="link_title">{{ post.title }}</a></h2>
+                        {% if post.description %}
+                            <p>{{ post.description|safe|linebreaksbr|truncatewords:30 }}</p>
+                        {% else %}
+                            <p>{{ post.text|safe|linebreaksbr|truncatewords:20 }}</p>
+                        {% endif %}
+                    </div>
+                    
                     <div class="post-stats">
                         <div>
-                            <time>{{ post.published_date }}</time>
-                            <p><i class="fa-solid fa-thumbs-up"></i>{{ post.number_of_upvotes }}</p>
-                            <p><i class="fa-solid fa-eye"></i>{{ post.number_of_views }}</p>
-                            <p><i class="fa-solid fa-comment"></i>{{ post.comment_set.all.count }}</p>
-                        </div>
-                        <div>
-                            <button id="share-button">Share</button>
+                            <p class="upvotes"><i class="fa-solid fa-arrow-up fa-sm"></i>{{ post.number_of_upvotes }} upvotes</p>
+                            <p><i class="fa-solid fa-eye fa-sm"></i>{{ post.number_of_views }} views</p>
+                            <p><i class="fa-regular fa-comment fa-sm"></i>{{ post.comment_set.all.count }} comments</p>
+                            <button id="share-button">Share <i class="fa-solid fa-share fa-sm"></i></button>
                         </div>
                     </div>
                 </article>
@@ -91,8 +98,10 @@
         window.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const filterValue = urlParams.get("q");
+            const teamFilterValue = urlParams.get("team");
             if (filterValue) {
                 document.getElementById("filter").value = filterValue;
+                document.getElementById("team-filter").value = teamFilterValue;
             }
         });
 
@@ -104,13 +113,19 @@
             location.reload();
         })
 
+        document.getElementById('team-filter').addEventListener("change", function() {
+            const selectedValue = this.value;
+            const url = new URL(window.location);
+            url.searchParams.set("team", selectedValue);
+            window.history.replaceState({}, "", url);
+            location.reload();
+        })
+
         const shareButton = document.getElementById('share-button');
         const postTitleLink = document.getElementById('link_title').href;
         shareButton.addEventListener('click', () => {
             if (navigator.share) {
                 navigator.share({
-                    title: 'My Website', // Optional: Title of the content
-                    text: 'Check out this amazing website!', // Optional: Text to accompany the link
                     url: postTitleLink // Required: The URL to share
                 })
                 .then(() => {

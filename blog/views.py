@@ -72,26 +72,37 @@ def logout_view(request):
 
 def post_list(request):
     query = request.GET.get('q')
+    team_id = request.GET.get('team')
+    print(f"Team id: {team_id}")
     mlb_teams = Team.objects.filter(sport__name='MLB')
-    print(mlb_teams)
     leaderboard = Leaderboard.objects.all().order_by('-upvotes')[:10]
-    print(leaderboard)
 
     posts = []
-    print(query)
-    if query:
+    print(f"Query = {query}")
+    if query and team_id == "any":
         if query == "best":
             posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-upvotes', '-views', '-created_date')
             posts = posts.annotate(
                 score=0.8 * Count('upvotes') + 0.1 * Count('views') + 0.7 * Count('comment')
             ).order_by('-score')
-            print(posts)
         elif query == "top":
             posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')
         elif query == "rising":
             posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-created_date')
         elif query == "new":
             posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-created_date')
+    elif query and team_id:
+        if query == "best":
+            posts = Post.objects.filter(published_date__lte=timezone.now(), author__favorite_team__id=team_id).order_by('-upvotes', '-views', '-created_date')
+            posts = posts.annotate(
+                score=0.8 * Count('upvotes') + 0.1 * Count('views') + 0.7 * Count('comment')
+            ).order_by('-score')
+        elif query == "top":
+            posts = Post.objects.filter(published_date__lte=timezone.now(), author__favorite_team__id=team_id).order_by('-views')
+        elif query == "rising":
+            posts = Post.objects.filter(published_date__lte=timezone.now(), author__favorite_team__id=team_id).order_by('-created_date')
+        elif query == "new":
+            posts = Post.objects.filter(published_date__lte=timezone.now(), author__favorite_team__id=team_id).order_by('-created_date')
     else:
         # Criteria for "best" posts can be defined here
         # The best posts can be defined as having the following traits:
@@ -105,7 +116,7 @@ def post_list(request):
         posts = posts.annotate(
             score=0.8 * Count('upvotes') + 0.1 * Count('views') + 0.7 * Count('comment')
         ).order_by('-score')
-        print(posts)
+    print(f"Query: {query}\nPosts: {posts.count()}")
 
     if posts.count() == 0:
         return render(request, 'blog/post_list.html', {

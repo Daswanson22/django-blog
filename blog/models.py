@@ -74,7 +74,7 @@ class UserProfile(models.Model):
         return Comment.objects.filter(user=self.user).annotate(upvote_count=Count('upvotes')).aggregate(total=Sum('upvote_count'))['total'] or 0
 
     def __str__(self):
-        return f"{self.user.username} - {self.favorite_team} - {self.slug}"
+        return f"{self.user.username}"
     
 class IpAddress(models.Model):
     ip_address = models.GenericIPAddressField(null=True, blank=True)
@@ -84,7 +84,7 @@ class IpAddress(models.Model):
         return self.ip_address
 
 class Post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     description = models.TextField(max_length=200, blank=True, null=True)
     image_url = models.URLField(blank=True, null=True)
     slug = models.SlugField(max_length=200, unique=True, default='')
@@ -151,4 +151,4 @@ class Leaderboard(models.Model):
         self.save()
 
     def __str__(self):
-        return f"{self.user.username} - {self.upvotes}"
+        return f"{self.user.username}"
